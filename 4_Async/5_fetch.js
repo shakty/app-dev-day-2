@@ -40,8 +40,8 @@ const fetch = require("node-fetch");
 // API address.
 const ENDPOINT = "https://swapi.dev/api/";
 
-// Change me.
-let query = 'people/1/';
+// Check the SWAPI doc and change this.
+let query = 'REPLACE_WITH_RIGHT_QUERY';
 
 fetch(ENDPOINT + query)
   .then(res => {
@@ -74,8 +74,8 @@ fetch(ENDPOINT + query)
 const fetch = require("node-fetch");
 const ENDPOINT = "https://swapi.dev/api/";
 
-// Change me.
-let query = 'YOU_NEED_TO_CHANGE_THIS';
+// Check the SWAPI doc and change this.
+let query = 'REPLACE_WITH_RIGHT_QUERY';
 
 // Hint: remember that await can be used only inside an async function.
 // If needed, you may create an anonimous async function.

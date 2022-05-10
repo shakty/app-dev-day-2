@@ -137,13 +137,13 @@ let doFetch = (page = 1) => {
     })
     .then(json => {
       db = [ ...db, ...json.results ];
-      // db = db.concat(json.results);
+      // If this request is succesfull, makes the next one
+      // until we get an error.
       doFetch(++page);
     })
     .catch(err => {
       console.log(`Fetched ${db.length} Star Wars characters.`);
       // console.error(err);
-      // fetching = false;
     });
 }
 

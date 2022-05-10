@@ -9,18 +9,14 @@
 // few things you can still rely upon. It does what it "promises":
 // it will fetch something for you.
 
-// Fetch is very good at fetching stuff from remote servers and
-// it is very well supported in modern browser.
-// However, alas, it does not go along well with old browsers,
-// for which the old-school AJAX (Asynchronous JavaScript And XML) requests
-// are still the way to go. There is no native support in NodeJS, but
-// don't worry, exercise 1 has got you covered.
+// Right, but axios is actually better at fetching, isn't it?
+// So here we repeat exercise 5 with axios instead of fetch.
 
 // Exercise 1: install and require node-fetch.
 //////////////////////////////////
 // a. Fetch yourself the node-fetch with this command:
 
-// npm i node-fetch --save
+// npm i axios --save
 
 
 // Exercise 2: Star Wars API.
@@ -40,8 +36,8 @@ const fetch = require("node-fetch");
 // API address.
 const ENDPOINT = "https://swapi.dev/api/";
 
-// Change me.
-let query = 'people/1/';
+// Check the SWAPI doc and change this.
+let query = 'REPLACE_WITH_RIGHT_QUERY';
 
 fetch(ENDPOINT + query)
   .then(res => {
@@ -74,8 +70,8 @@ fetch(ENDPOINT + query)
 const fetch = require("node-fetch");
 const ENDPOINT = "https://swapi.dev/api/";
 
-// Change me.
-let query = 'YOU_NEED_TO_CHANGE_THIS';
+// Check the SWAPI doc and change this.
+let query = 'REPLACE_WITH_RIGHT_QUERY';
 
 // Hint: remember that await can be used only inside an async function.
 // If needed, you may create an anonimous async function.

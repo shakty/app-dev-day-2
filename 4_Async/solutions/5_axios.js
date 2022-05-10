@@ -16,7 +16,7 @@
 //////////////////////////////////
 // a. Fetch yourself the node-fetch with this command:
 
-// npm i node-fetch --save
+// npm i axios --save
 
 
 // Exercise 2: Star Wars API.
@@ -31,30 +31,17 @@
 // After reading the SWAPI doc, adjust the query variable below accordingly.
 
 // Require fetch.
-const fetch = require("node-fetch");
+const axios = require("axios");
 
 // API address.
 const ENDPOINT = "https://swapi.dev/api/";
 
 // Change me.
-let query = 'YOU_NEED_TO_CHANGE_THIS';
+let query = 'people/1/';
 
-fetch(ENDPOINT + query)
-  .then(res => {
-    // Why 400 ?
-    // https://en.wikipedia.org/wiki/List_of_HTTP_status_codes  
-    if (res.status >= 400) {
-      throw new Error("Bad response from server");
-    }
-    
-    // Fetches gets the headers first, then it process
-    // the body asynchronously. 
-    
-    // It also returns a promise.
-    return res.json();
-  })
+axios(ENDPOINT + query)
   .then(json => {
-    console.log(json);
+    console.log(json.data);
   })
   .catch(err => {
     console.error(err);
@@ -63,9 +50,10 @@ fetch(ENDPOINT + query)
 // // Exercise 2. Async Fetch.
 // ///////////////////////////
 
-// Let's do it again with the async/await pattern.
+// Let's do it again with the async/await pattern, but let's
+// print only the name, rather than the full object.
 
-const fetch = require("node-fetch");
+const axios = require("axios");
 
 // API address.
 const ENDPOINT = "https://swapi.dev/api/";
@@ -79,15 +67,9 @@ let query = 'people/1';
 (async() => {
 
   try {
-    const res = await fetch(ENDPOINT + query);
+    const json = await axios(ENDPOINT + query);
 
-    if (res.status >= 400) {
-      throw new Error("Bad response from server");
-    }
-
-    const user = await res.json();
-
-    console.log('We got ASYNC/AWAIT: ', user.name);
+    console.log('We got ASYNC/AWAIT: ', json.data.name);
 
   }
   catch(err) {
@@ -115,7 +97,7 @@ let query = 'people/1';
 // Hint1: you might use a recursive solution.
 // Ref: https://javascript.info/recursion
 
-const fetch = require("node-fetch");
+const axios = require("axios");
 const ENDPOINT = "https://swapi.dev/api/";
 let query = "people/";
 
@@ -124,22 +106,16 @@ let page = 1;
 
 let doFetch = (page = 1) => {
   console.log('Fetching page ' + page);
-  fetch(ENDPOINT + query + '?page=' + page)
-    .then(res => {
-      if (res.status >= 400) {
-        throw new Error("Bad response from server");
-      }
-      return res.json();
-    })
+  axios(ENDPOINT + query + '?page=' + page)
     .then(json => {
-      db = [ ...db, ...json.results ];
-      // db = db.concat(json.results);
+      db = [ ...db, ...json.data.results ];
+      // If this request is succesfull, makes the next one
+      // until we get an error.
       doFetch(++page);
     })
     .catch(err => {
+      // Finished!
       console.log(`Fetched ${db.length} Star Wars characters.`);
-      // console.error(err);
-      // fetching = false;
     });
 }
 
@@ -149,7 +125,7 @@ doFetch();
 
 // Hint: you may use a while loop.
 
-const fetch = require("node-fetch");
+const axios = require("axios");
 const ENDPOINT = "https://swapi.dev/api/";
 let query = "people/";
 
@@ -163,15 +139,9 @@ let fetchAll = async () => {
   try {
     while(fetching) {
       console.log('Fetching page ' + page);
-      const res = await fetch(ENDPOINT + query + '?page=' + page++);
+      const json = await axios(ENDPOINT + query + '?page=' + page++);
 
-      if (res.status >= 400) {
-        throw new Error("Bad response from server");
-      }
-
-      const json = await res.json();
-
-      db = [ ...db, ...json.results ];
+      db = [ ...db, ...json.data.results ];
     }
   }
   catch(err) {
@@ -197,7 +167,7 @@ let fetchAll = async () => {
 
 // Hint: create all promises in a loop and them to an array.
 
-const fetch = require("node-fetch");
+const axios = require("axios");
 const ENDPOINT = "https://swapi.dev/api/";
 let query = "people/";
 
@@ -207,18 +177,14 @@ let page = 1;
 let promises = new Array(9);
 
 for (let i = 0; i < promises.length; i++) {
-  promises[i] = fetch(ENDPOINT + query + "?page=" + page++).then((res) => {
-    if (res.status >= 400) {
-      throw new Error("Bad response from server");
-    }
-    return res.json();
-  });
+  promises[i] = axios(ENDPOINT + query + "?page=" + page++)
+                  .then((res) => { return res; });
 }
 
 Promise.all(promises)
   .then((array) => {
     for (let i = 0; i < array.length; i++) {
-      db = [ ...db, ...array[i].results ];
+      db = [ ...db, ...array[i].data.results ];
     }
     console.log(`Concurrently fetched ${db.length} Star Wars characters.`);
   })
