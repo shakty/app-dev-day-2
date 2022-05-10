@@ -15,15 +15,8 @@
 // For you it is enough to know that it returns a function.
 // Execute it and solve the mistery.
 
-// const mistery = require('./lib/misteryFile.js');
-// mistery();
-
 // b. Optional. If you are really cool, you might use the path module
 // to create cross-platform paths.
-
-// const path = require('path');
-// let myPath = path.resolve(__dirname, 'lib', 'misteryFile.js');
-// console.log(myPath);
 
 
 // Ref: https://nodejs.org/api/path.html

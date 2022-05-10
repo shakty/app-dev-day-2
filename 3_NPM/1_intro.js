@@ -12,12 +12,10 @@
 // Guess what the package is doing before looking it up.
 // Yes, it is doing what you think is doing.
 
-// b. Make the following lines of code executables without 
+// b. Make the following lines of code execute without 
 // errors.
 
 // Add something here.
-
-const isOdd = require('is-odd');
 let odd = 1;
 console.log(isOdd(odd));
 
@@ -34,8 +32,10 @@ console.log(isEven(even));
 // It is a good coding practice to limit the number of dependencies to the
 // essential. So, you should never use the packages is-odd and is-even in your
 // projects, unless for demostration or for fun. Or both. 
-// If you don't know why, you can read this article:
+// If you don't know why, you can read these articles:
 // https://www.sciencealert.com/how-a-programmer-almost-broke-the-internet-by-deleting-11-lines-of-code
+// https://snyk.io/blog/peacenotwar-malicious-npm-node-ipc-package-vulnerability/
+
 
 // Now, I know you know how to do it, so why don't you write down the two 
 // one-liners that reproduce the methods isOdd and isEven used above?
@@ -43,6 +43,7 @@ console.log(isEven(even));
 
 
 // Then test your one-liner functions here. 
+let num = 1;
 console.log('Is the number odd? '  + (isOdd(num) ? 'Yes' : 'No'));
 console.log('Is the number even? ' + (isEven(num) ? 'Yes' : 'No'));
 
