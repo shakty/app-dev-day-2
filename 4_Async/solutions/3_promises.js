@@ -88,8 +88,8 @@ promise
   .then(res => console.log(`Yes, you are!`))
   .catch(res => console.log(`No, you are not.`))
   .finally(() => {
-    isSearching = true;
-    console.log('Is the exercise over?', isSearching ? 'Yes!' : 'No!');
+    exerciseIsOver = true;
+    console.log('Is the exercise over?', exerciseIsOver ? 'Yes!' : 'No!');
   });
 
   

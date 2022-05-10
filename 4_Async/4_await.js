@@ -42,13 +42,13 @@ let hello = async () => {
   let promise = new Promise((resolve, reject) => {
     setTimeout(() => resolve("Hello"), 1000);
   });
-  let word = await promise;
-  console.log(word);
+  
+  // Add code here!
 };
 
 hello();
 
-// Exercise: handling errors in async/await.
+// Exercise 2: handling errors in async/await.
 ////////////////////////////////////////////
 
 // What if the promise is not fulfilled? We need to use the good old 
@@ -60,18 +60,7 @@ hello();
 // in a try/catch block.
 
 // Let's make hello really async now.
-let hello = async () => { 
-  let promise = new Promise((resolve, reject) => {
-    setTimeout(() => reject("Nope!"), 1000);
-  });
-  try {
-    let word = await promise;
-    console.log(word);
-  }
-  catch(e) {
-    console.log(e);
-  }
-};
+
 
 hello();
 
