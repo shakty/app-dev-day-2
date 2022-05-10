@@ -40,6 +40,8 @@
 // Ref: https://www.w3schools.com/jsref/met_win_setinterval.asp
 // Hint2: Ctrl-C (or Apple-C) on console will terminate the infinite salutation.
 // in VS Code-Runner, right-click "Stop Code Run".
+  // Hint2: Ctrl-C (or Apple-C) on console will terminate the infinite 
+  // salutation. In VS Code-Runner, right-click "Stop Code Run".
 
 
 // b. Bill, shocked by your compulsive reaction, finally says "Hello..." after
