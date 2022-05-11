@@ -1,6 +1,12 @@
 // Tabs.
 let currentTab = null;
 function displayTab(tabId) {
+
+    // Make the container div visible.
+    // This needs to be done only once, but we repeat
+    // at every call for simplicity.
+    document.getElementById('below').style.display = '';
+
     // We need to change the class name of both the tab
     // and its navigation link. 
     if (currentTab) {
