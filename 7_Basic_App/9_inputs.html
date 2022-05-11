@@ -11,26 +11,18 @@
                 margin: 0 auto;
                 text-align: center;
             }
-            body {
-                background-color: #fff;
-                background-image:
-                linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),
-                linear-gradient(#eee .1em, transparent .1em);
-                background-size: 100% 1.2em;
-            }
-            .title {
-                background: white;
-                max-width: fit-content;
-                border: 2px solid black;
-                padding: 10px;
-            }
 
         </style>
+
+        
+        <!-- We can add even more cool styles -->
+        <link rel="stylesheet" href="./css/style_cool.css" />
+
         <link rel="stylesheet" href="./css/style_inputs.css" />
     </head>
     <body>
 
-        <div id="above" name="Brendan" class="large wide title">
+        <div id="above" name="Brendan" class="large wide title header">
             Do you feel the power?
             <!-- Option 1 to add an event listener to clicks -->
             <span id="power-yes" class="link" onclick="displayTab('tab-yes');">Yes</span> |
@@ -38,7 +30,7 @@
             <span id="power-no" class="link">No</span>
         </div>
 
-        <div id="below" class="large centered title">
+        <div id="below" class="large centered title" style="display: none">
            <div id="tab-yes" class="tab">
                This is a beautiful day!
                <img class="img" src="https://img.prod.portals.aws.zehnder.ch/s/baf8b716b0f7efedd95887aa740d4708b1c9ed99-zna-343276-1200-816/441x300m.jpg" title="Beatiful Day" />
@@ -55,24 +47,24 @@
                 <img class="img" src="https://api.time.com/wp-content/uploads/2018/04/trumpstormycover.jpg?quality=85&w=1012" title="S****y Day" />
                 <!-- Img Source: https://time.com/magazine/us/5237427/april-23rd-2018-vol-191-no-15-u-s/ -->
 
-               <p>
+                <div class="list-container">
                     <strong>Oh I am sorry :(</strong> <br/><br/>
-                    Here is a list of things to do that should make you feel better.
-                   <ul class="feelbetter-list">
-                       <li>Adopt A Pet Dog</li>
-                       <li>Host A Dinner Party With Friends</li>
-                       <li>Play With Legos
-                       <li>Make Coffee Ice Cubes</li>
-                       <li>Have A Karaoke Night</li>
-                       <li>Volunteer To Babysit For A Friend</li>
-                       <li>Try A Science Experiment</li>
-                       <li>Learn To Juggle</li>
-                       <li>Have A Water Balloon Fight</li>
-                       <li>Take A Power Nap</li>
-                       <li>Make S'mores</li>
-                       <li>Watch The Sunset</li>
-                   </ul>
-               </p>
+                     Here is a list of things to do that should make you feel better.
+                    <ol class="feelbetter-list">
+                        <li>Adopt A Pet Dog</li>
+                        <li>Host A Dinner Party With Friends</li>
+                        <li>Play With Legos
+                        <li>Make Coffee Ice Cubes</li>
+                        <li>Have A Karaoke Night</li>
+                        <li>Volunteer To Babysit For A Friend</li>
+                        <li>Try A Science Experiment</li>
+                        <li>Learn To Juggle</li>
+                        <li>Have A Water Balloon Fight</li>
+                        <li>Take A Power Nap</li>
+                        <li>Make S'mores</li>
+                        <li>Watch The Sunset</li>
+                    </ol>
+                </div>
 
                <p>
                    And now do you feel better?<br/>
@@ -97,13 +89,14 @@
                 <br/>
 
                 <label for="why-better-select">
-                    In case you prefer selecting options from a dropdown menu.
+                    Or select options from a dropdown menu.
                 </label><br/>
                 <select id="why-better-select">
+                    <option>--</option>
                     <option>Pandemic</option>
-                    <option>Covid-19</option>
-                    <option>Lockdown</option>
-                    <option>Learning JavaScript</option>
+                    <option>War</option>
+                    <option>Bitcoin plummeted</option>
+                    <option>JavaScript</option>
                 </select>
 
                 <input type="submit" value="Submit" />
@@ -114,7 +107,8 @@
         </div>
 
         <!-- Load scripts created in previous exercises. -->
-        <script src="./js/tabs_and_header.js"></script>
+        <script src="./js/tabs.js"></script>
+
         <!-- Solution. -->
         <script src="./js/inputs.js"></script>
 
@@ -135,10 +129,11 @@
                 // A bit more space.
                 surveyHeading.innerHTML += '<br/><br/>';
 
-                // Exercise: make the survey visible.
-
+                // Exercise: make the survey visible and 
+                // smooth scroll into view.
+                
                 // Solution.
-                // doSolution();
+                doSolution();
             }
 
         </script>

@@ -11,34 +11,17 @@
                 margin: 0 auto;
                 text-align: center;
             }
-            body {
-                background:
-                radial-gradient(black 3px, transparent 4px),
-                radial-gradient(black 3px, transparent 4px),
-                linear-gradient(#fff 4px, transparent 0),
-                linear-gradient(45deg, transparent 74px, transparent 75px, #a4a4a4 75px, #a4a4a4 76px, transparent 77px, transparent 109px),
-                linear-gradient(-45deg, transparent 75px, transparent 76px, #a4a4a4 76px, #a4a4a4 77px, transparent 78px, transparent 109px),
-                #fff;
-                background-size: 109px 109px, 109px 109px,100% 6px, 109px 109px, 109px 109px;
-                background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
-            }
 
-            .list-container {
-                background: white;
-                max-width: 400px;
-                align-content: center;
-                margin: 30px auto;
-                border: 5px dashed #ed5e8d;
-                padding: 50px;
-                box-shadow: 2px 2px 2px;
-                font-family: cursive;
-            }
         </style>
+
+        <!-- We can add even more cool styles -->
+        <link rel="stylesheet" href="./css/style_cool.css" />
+        
         <link rel="stylesheet" href="./css/style_lists.css" />
     </head>
     <body>
 
-        <div id="above" name="Brendan" class="large wide title">
+        <div id="above" name="Brendan" class="large wide title header">
             Do you feel the power?
             <!-- Option 1 to add an event listener to clicks -->
             <span id="power-yes" class="link" onclick="displayTab('tab-yes');">Yes</span> |
@@ -46,7 +29,8 @@
             <span id="power-no" class="link">No</span>
         </div>
 
-        <div id="below" class="large centered title">
+        <div id="below" class="large centered title" style="display: none">
+
            <div id="tab-yes" class="tab">
                This is a beautiful day!
                <img class="img" src="https://img.prod.portals.aws.zehnder.ch/s/baf8b716b0f7efedd95887aa740d4708b1c9ed99-zna-343276-1200-816/441x300m.jpg" title="Beatiful Day" />
@@ -85,39 +69,8 @@
             </div>
         </div>
 
-        <script>
+        <!-- Load scripts created in previous exercises. -->
+        <script src="./js/tabs.js"></script>
 
-            // Uncomment for step-by-step execution.
-            // debugger;
-
-            // Header.
-            function makeHeader(div) {
-                div.style.background = '#CCC';
-                div.style.border = '1px solid black';
-                // CSS property box-shadow needs to be quoted in JS to
-                // avoid confusion with the minus sign.
-                div.style['box-shadow'] = '2px 2px';
-            }
-            let divAbove = document.getElementById("above");
-            makeHeader(divAbove);
-
-            // Tabs.
-            let currentTab = null;
-            function displayTab(tabId) {
-                if (currentTab) currentTab.className = 'tab';
-                currentTab = document.getElementById(tabId);
-                currentTab.className = 'tab tab-active';
-            }
-
-            // Option 2 to add an event listener to clicks.
-            document.getElementById('power-maybe').onclick = function() {
-                displayTab("tab-maybe");
-            };
-
-            // Option 3 to add an event listener to clicks.
-            document.getElementById('power-no').addEventListener('click', function() {
-                displayTab("tab-no");
-            });
-        </script>
     </body>
 </html>

@@ -11,27 +11,12 @@
                 margin: 0 auto;
                 text-align: center;
             }
-            body {
-                background:
-                radial-gradient(black 3px, transparent 4px),
-                radial-gradient(black 3px, transparent 4px),
-                linear-gradient(#fff 4px, transparent 0),
-                linear-gradient(45deg, transparent 74px, transparent 75px, #a4a4a4 75px, #a4a4a4 76px, transparent 77px, transparent 109px),
-                linear-gradient(-45deg, transparent 75px, transparent 76px, #a4a4a4 76px, #a4a4a4 77px, transparent 78px, transparent 109px),
-                #fff;
-                background-size: 109px 109px, 109px 109px,100% 6px, 109px 109px, 109px 109px;
-                background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
-            }
-
-            .title {
-                background: white;
-                max-width: fit-content;
-                border: 2px solid black;
-                padding: 10px;
-            }
-
 
         </style>
+
+        <!-- We can add even more cool styles -->
+        <link rel="stylesheet" href="./css/style_cool.css" />
+
         <link rel="stylesheet" href="./css/style_tabs.css" />
     </head>
     <body>
@@ -40,7 +25,8 @@
             event listeners to elements.
         -->
 
-        <div id="above" name="Brendan" class="large wide title">
+        <div id="above" name="Brendan" class="large wide title header">
+
             Do you feel the power?
             <!-- Option 1 to add an event listener to clicks -->
             <span id="power-yes" class="link" onclick="displayTab('tab-yes');">Yes</span> |
@@ -48,7 +34,7 @@
             <span id="power-no" class="link">No</span>
         </div>
 
-        <div id="below" class="large centered title">
+        <div id="below" class="large centered title" style="display: none">
            <div id="tab-yes" class="tab">
                This is a beautiful day!
            </div>
@@ -59,8 +45,7 @@
                 This is a s****y day!
             </div>
         </div>
-        <!-- Contains function to make the header from previous exercise. -->
-        <script src="./js/links.js"></script>
+
 
         <script>
 
@@ -72,6 +57,11 @@
             function displayTab(tabId) {
 
                 // debugger
+
+                // Make the container div visible.
+                // This needs to be done only once, but we repeat
+                // at every call for simplicity.
+                document.getElementById('below').style.display = '';
 
                 if (currentTab) currentTab.className = 'tab';
                 currentTab = document.getElementById(tabId);

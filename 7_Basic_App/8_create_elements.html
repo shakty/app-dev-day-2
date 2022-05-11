@@ -11,26 +11,17 @@
                 margin: 0 auto;
                 text-align: center;
             }
-            body {
-                background-color: #fff;
-                background-image:
-                linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),
-                linear-gradient(#eee .1em, transparent .1em);
-                background-size: 100% 1.2em;
-            }
-            .title {
-                background: white;
-                max-width: fit-content;
-                border: 2px solid black;
-                padding: 10px;
-            }
 
         </style>
+
+        <!-- We can add even more cool styles -->
+        <link rel="stylesheet" href="./css/style_cool.css" />
+
         <link rel="stylesheet" href="./css/style_inputs.css" />
     </head>
     <body>
 
-        <div id="above" name="Brendan" class="large wide title">
+        <div id="above" name="Brendan" class="large wide title header">
             Do you feel the power?
             <!-- Option 1 to add an event listener to clicks -->
             <span id="power-yes" class="link" onclick="displayTab('tab-yes');">Yes</span> |
@@ -38,7 +29,7 @@
             <span id="power-no" class="link">No</span>
         </div>
 
-        <div id="below" class="large centered title">
+        <div id="below" class="large centered title" style="display: none">
            <div id="tab-yes" class="tab">
                This is a beautiful day!
                <img class="img" src="https://img.prod.portals.aws.zehnder.ch/s/baf8b716b0f7efedd95887aa740d4708b1c9ed99-zna-343276-1200-816/441x300m.jpg" title="Beatiful Day" />
@@ -55,17 +46,17 @@
                 <img class="img" src="https://api.time.com/wp-content/uploads/2018/04/trumpstormycover.jpg?quality=85&w=1012" title="S****y Day" />
                 <!-- Img Source: https://time.com/magazine/us/5237427/april-23rd-2018-vol-191-no-15-u-s/ -->
 
-               <p>
+                <div class="list-container">
                     <strong>Oh I am sorry :(</strong>
                     <br/><br/>
                     Here is a list of things to do that should make you feel better.
 
-               </p>
+                </div>
 
             </div>
         </div>
         <!-- Load scripts created in previous exercises. -->
-        <script src="./js/tabs_and_header.js"></script>
+        <script src="./js/tabs.js"></script>
         <!-- Solution. -->
         <script src="./js/create_elements.js"></script>
         <script>
@@ -73,9 +64,9 @@
 
             // Things to do.
 
-            // Find the first <p> tag inside the
+            // Find the first <div> tag inside the
             // element with id "tab-no".
-            let p = document.querySelector('#tab-no p');
+            let div = document.querySelector('#tab-no div');
 
             // Create an img with loading wheel.
             let img = document.createElement('img');
@@ -88,7 +79,7 @@
             img.style.margin = '0 auto';
 
             // Add the <img> as a child element <p>.
-            p.appendChild(img);
+            div.appendChild(img);
 
             // Simulate fetching a list of things
             // to do from a remote server.
@@ -117,30 +108,22 @@
 
             // Create a new element <ul>. This element is not yet
             // added to the DOM tree, but we can still manipulate it.
-            let ul = document.createElement('ul');
+            let ol = document.createElement('ol');
 
-            // We set the class of <ul>. Note: in JS the attribute "class"
+            // We set the class of <ol>. Note: in JS the attribute "class"
             // is named "className" because "class" is a reserved word.
-            ul.className = 'feelbetter-list';
+            ol.className = 'feelbetter-list';
+
+            div.appendChild(ol);
 
             // Exercise. Call the fetchThingsToDo function
             // to programmatically create the list of things to do.
 
             // Solution.
-            // doSolution();
-
-            p.appendChild(ul);
-
-            fetchThingsToDo(function(todos) {
-                todos.forEach((item) => {
-
-                    let li = document.createElement('li');
-                    li.innerText = item;
-                    ul.appendChild(li);
+            doSolution();
 
 
-                });
-            });
+           
 
 
 
