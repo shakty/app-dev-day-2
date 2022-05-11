@@ -1,10 +1,11 @@
-// Example adapted from: 
+// Example adapted from:
 // https://www.syedhussim.com/node.js/generating-web-api-keys.html
 
 const SIZE = 40;
 const crypto = require("crypto");
 const rand = crypto.randomBytes(SIZE);
 const unique_id = rand.toString("hex")
+console.log(unique_id);
 
 let chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
@@ -29,5 +30,3 @@ bcrypt.hash(key, saltRounds, function(err, hash) {
     fs.writeFileSync(fileName, `module.exports = "${hash}"`);
     console.log("Hash of API key created: " + "secret/key.js");
 });
-
-
