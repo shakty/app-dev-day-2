@@ -11,20 +11,41 @@
                 margin: 0 auto;
                 text-align: center;
             }
+
+            body {
+                background:
+                radial-gradient(black 3px, transparent 4px),
+                radial-gradient(black 3px, transparent 4px),
+                linear-gradient(#fff 4px, transparent 0),
+                linear-gradient(45deg, transparent 74px, transparent 75px, #a4a4a4 75px, #a4a4a4 76px, transparent 77px, transparent 109px),
+                linear-gradient(-45deg, transparent 75px, transparent 76px, #a4a4a4 76px, #a4a4a4 77px, transparent 78px, transparent 109px),
+                #fff;
+                background-size: 109px 109px, 109px 109px,100% 6px, 109px 109px, 109px 109px;
+                background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
+            }
+
+            .title {
+                background: white;
+                max-width: fit-content;
+                border: 2px solid black;
+                padding: 10px;
+            }
+
+
         </style>
         <link rel="stylesheet" href="./css/style_images.css" />
     </head>
     <body>
-        <div id="above" name="Brendan" class="large wide">
+        <div id="above" name="Brendan" class="large wide title">
             Hello World!
         </div>
-        <div id="below" class="large centered">
+        <div id="below" class="large centered title">
            I feel the <a href="https://www.youtube.com/watch?v=3I6qBVkD-6Q">power!</a><br/>
            <a href="https://www.youtube.com/watch?v=3I6qBVkD-6Q" target="_blank"><em>in another tab</em></a>
         </div>
         <script>
             // Exercise: Make a function that styles any element
-            // like your header in exercise 3 about styling. Then apply 
+            // like your header in exercise 3 about styling. Then apply
             // the function to the element with id "divAbove", to obtain
             // the same results as in exercise 3.
         </script>

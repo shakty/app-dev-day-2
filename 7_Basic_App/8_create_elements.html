@@ -11,20 +11,34 @@
                 margin: 0 auto;
                 text-align: center;
             }
+            body {
+                background-color: #fff;
+                background-image:
+                linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),
+                linear-gradient(#eee .1em, transparent .1em);
+                background-size: 100% 1.2em;
+            }
+            .title {
+                background: white;
+                max-width: fit-content;
+                border: 2px solid black;
+                padding: 10px;
+            }
+
         </style>
         <link rel="stylesheet" href="./css/style_inputs.css" />
     </head>
     <body>
-        
-        <div id="above" name="Brendan" class="large wide">
+
+        <div id="above" name="Brendan" class="large wide title">
             Do you feel the power?
             <!-- Option 1 to add an event listener to clicks -->
             <span id="power-yes" class="link" onclick="displayTab('tab-yes');">Yes</span> |
             <span id="power-maybe" class="link">Maybe</span> |
             <span id="power-no" class="link">No</span>
         </div>
-        
-        <div id="below" class="large centered">
+
+        <div id="below" class="large centered title">
            <div id="tab-yes" class="tab">
                This is a beautiful day!
                <img class="img" src="https://img.prod.portals.aws.zehnder.ch/s/baf8b716b0f7efedd95887aa740d4708b1c9ed99-zna-343276-1200-816/441x300m.jpg" title="Beatiful Day" />
@@ -34,7 +48,7 @@
                 This is an OKish day...
                 <img class="img" src="https://i.pinimg.com/originals/71/28/c5/7128c55d18eb6e235dee15e32f8039f6.jpg" title="OKish Day" />
                 <!-- Img Source: https://www.pinterest.com/pin/210472982565641957/ -->
-                
+
             </div>
            <div id="tab-no" class="tab">
                 This is a s****y day!
@@ -45,9 +59,9 @@
                     <strong>Oh I am sorry :(</strong>
                     <br/><br/>
                     Here is a list of things to do that should make you feel better.
-                    
-               </p> 
-  
+
+               </p>
+
             </div>
         </div>
         <!-- Load scripts created in previous exercises. -->
@@ -58,11 +72,11 @@
             debugger
 
             // Things to do.
-            
-            // Find the first <p> tag inside the 
+
+            // Find the first <p> tag inside the
             // element with id "tab-no".
             let p = document.querySelector('#tab-no p');
-            
+
             // Create an img with loading wheel.
             let img = document.createElement('img');
             img.src = './img/loading.gif';
@@ -76,12 +90,12 @@
             // Add the <img> as a child element <p>.
             p.appendChild(img);
 
-            // Simulate fetching a list of things 
+            // Simulate fetching a list of things
             // to do from a remote server.
             function fetchThingsToDo(cb) {
                 let todos = [
                     'Adopt A Pet Dog',
-                    'Host A Dinner Party With Friends', 
+                    'Host A Dinner Party With Friends',
                     'Play With Legos',
                     'Make Coffee Ice Cubes',
                     'Have A Karaoke Night',
@@ -111,7 +125,7 @@
 
             // Exercise. Call the fetchThingsToDo function
             // to programmatically create the list of things to do.
-            
+
             // Solution.
             // doSolution();
 
@@ -123,8 +137,8 @@
                     let li = document.createElement('li');
                     li.innerText = item;
                     ul.appendChild(li);
-                
-                
+
+
                 });
             });
 

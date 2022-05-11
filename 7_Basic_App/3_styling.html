@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>Styling</title>
-        <!-- 
+        <!--
             There are four ways of styling a page.
             All involve knowning a little bit of the CSS syntax.
             Luckily, the syntax is straightforward and intuitive.
@@ -13,7 +13,7 @@
         <!-- Option 2: The <STYLE> tag -->
         <style>
 
-            /* 
+            /*
               The order in which the styles are applied is
               important. What comes later overwrites any
               previously defined style in conflict.
@@ -34,26 +34,45 @@
                color: black;
             }
 
+            body {
+                background:
+                radial-gradient(black 3px, transparent 4px),
+                radial-gradient(black 3px, transparent 4px),
+                linear-gradient(#fff 4px, transparent 0),
+                linear-gradient(45deg, transparent 74px, transparent 75px, #a4a4a4 75px, #a4a4a4 76px, transparent 77px, transparent 109px),
+                linear-gradient(-45deg, transparent 75px, transparent 76px, #a4a4a4 76px, #a4a4a4 77px, transparent 78px, transparent 109px),
+                #fff;
+                background-size: 109px 109px, 109px 109px,100% 6px, 109px 109px, 109px 109px;
+                background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
+            }
+
+            .title {
+                background: white;
+                max-width: fit-content;
+                border: 2px solid black;
+                padding: 10px;
+            }
+
         </style>
     </head>
     <body>
-        
+
         <!-- The class attribute associates one or more classes to elements -->
-        <div id="above" name="Brendan" class="large wide">
+        <div id="above" name="Brendan" class="large wide title">
             Hello World!
         </div>
 
-        <!-- Option 3: the inline "style" attribute --> 
-        <div id="below" class="large centered" style="text-transform: uppercase;">
+        <!-- Option 3: the inline "style" attribute -->
+        <div id="below" class="large centered title" style="text-transform: uppercase;">
            I feel the power!
         </div>
-        
+
 
         <script>
             // Exercise:
             // Option 4: Modify the style of elements via JS.
             // Style the element with id "above" to look more like a header.
-            // Hint: all the CSS styles are inside the style property. 
+            // Hint: all the CSS styles are inside the style property.
         </script>
         <!-- Solution. -->
         <!-- <script src="./js/stylying.js"></script> -->

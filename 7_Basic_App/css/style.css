@@ -1,6 +1,6 @@
 /* A comment inside a CSS file */
 
-/* 
+/*
   A dot followed by name create a class,
   meaning that the styling instructions
   will be applied together.
@@ -18,9 +18,10 @@
 .wide {
     padding: 10px;
     margin: 10px;
+    margin-left: 80px;
 }
 
-/* 
+/*
   It is also possible to apply styles to ids
   using the pound sign.
 */
