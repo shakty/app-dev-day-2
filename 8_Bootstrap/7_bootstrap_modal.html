@@ -50,23 +50,24 @@
     <h1 class="display-4">Do you feel the power?</h1>
     <p class="lead">
 
-    <ul class="nav nav-pills">
-      <li class="nav-item">
-        <a id="power-yes" class="nav-link h3" href="#">Yes</a>
-      </li>
-      <li class="nav-item">
-        <a id="power-maybe" class="nav-link h3" href="#">Maybe</a>
-      </li>
-      <li class="nav-item">
-        <a id="power-no" class="nav-link h3" href="#">No</a>
-      </li>
-    </ul>
+      <ul class="nav nav-pills" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button type="button" id="power-yes" class="nav-link h3" role="tab" data-bs-toggle="pill" data-bs-target="#tab-yes">Yes</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button type="button" id="power-maybe" class="nav-link h3"role="tab" data-bs-toggle="pill" data-bs-target="#tab-maybe">Maybe</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button type="button" id="power-no" class="nav-link h3" role="tab" data-bs-toggle="pill" data-bs-target="#tab-no">No</button>
+        </li>
+      </ul>
+
     </p>
   </div>
 
-  <div id="below" class="large centered" style="display: none">
+  <div id="below" class="large centered tab-content">
 
-    <div id="tab-yes" class="tab">
+    <div id="tab-yes" class="tab-pane fade" role="tabpanel">
 
       <div class="card centered" style="width: 25rem;">
         <img
@@ -83,7 +84,7 @@
                -->
 
     </div>
-    <div id="tab-maybe" class="tab">
+    <div id="tab-maybe" class="tab-pane fade" role="tabpanel">
 
       <div class="card centered" style="width: 25rem;">
         <img src="https://i.pinimg.com/originals/71/28/c5/7128c55d18eb6e235dee15e32f8039f6.jpg" class="card-img-top"
@@ -100,7 +101,7 @@
 
 
     </div>
-    <div id="tab-no" class="tab">
+    <div id="tab-no" class="tab-pane fade" role="tabpanel">
 
 
       <div class="container p-0">
@@ -167,13 +168,6 @@
   </div>
 
   <script src="js/activities.js"></script>
-
-
-
-
-
-  <!-- Load scripts created in previous exercises. -->
-  <script src="./js/tabs.js"></script>
 
   <script>
 
