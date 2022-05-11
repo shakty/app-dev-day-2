@@ -1,17 +1,17 @@
 <!doctype html>
 <html lang="en">
     <head>
-        
         <title>Bootstrap Tabs</title>
-        
+
         <!-- Bootstrap -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous"> -->
 
          <!-- End Bootstrap -->
-
+         
         <style>
             .large {
                 font-size: 30px;
@@ -22,34 +22,36 @@
                 margin: 0 auto;
                 text-align: center;
             }
+
         </style>
+
+        
+        <!-- We can add even more cool styles -->
+        <link rel="stylesheet" href="./css/style_cool.css" />
+
         <link rel="stylesheet" href="./css/style_inputs.css" />
     </head>
     <body>
-        
-        <div class="jumbotron">
-            <div class="container">
-              <h1 class="display-4">Do you feel the power?</h1>
-              <p class="lead">
-                  
-                    <ul class="nav nav-pills">
-                        <li class="nav-item">
-                        <a id="power-yes" class="nav-link" href="#">Yes</a>
-                        </li>
-                        <li class="nav-item">
-                        <a id="power-maybe" class="nav-link" href="#">Maybe</a>
-                        </li>
-                        <li class="nav-item">
-                        <a id="power-no" class="nav-link" href="#">No</a>
-                        </li>
-                    </ul>
-                    </p>
-            </div>
-          </div>
 
-        
-        <div id="below" class="large centered">
+        <div class="container title header p-3 pb-0">
+            <h1 class="display-4">Do you feel the power?</h1>
+            <p class="lead">
+                
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                    <a id="power-yes" class="nav-link h3" href="#">Yes</a>
+                    </li>
+                    <li class="nav-item">
+                    <a id="power-maybe" class="nav-link h3" href="#">Maybe</a>
+                    </li>
+                    <li class="nav-item">
+                    <a id="power-no" class="nav-link h3" href="#">No</a>
+                    </li>
+                </ul>
+                </p>
+        </div>
 
+        <div id="below" class="large centered title" style="display: none">
            <div id="tab-yes" class="tab">
                This is a beautiful day!
                <img class="img" src="https://img.prod.portals.aws.zehnder.ch/s/baf8b716b0f7efedd95887aa740d4708b1c9ed99-zna-343276-1200-816/441x300m.jpg" title="Beatiful Day" />
@@ -59,64 +61,110 @@
                 This is an OKish day...
                 <img class="img" src="https://i.pinimg.com/originals/71/28/c5/7128c55d18eb6e235dee15e32f8039f6.jpg" title="OKish Day" />
                 <!-- Img Source: https://www.pinterest.com/pin/210472982565641957/ -->
-                
+
             </div>
            <div id="tab-no" class="tab">
                 This is a s****y day!
                 <img class="img" src="https://api.time.com/wp-content/uploads/2018/04/trumpstormycover.jpg?quality=85&w=1012" title="S****y Day" />
                 <!-- Img Source: https://time.com/magazine/us/5237427/april-23rd-2018-vol-191-no-15-u-s/ -->
 
-               <p>
+                <div class="list-container">
                     <strong>Oh I am sorry :(</strong> <br/><br/>
-                    Here is a list of things to do that should make you feel better.
-                   <ul class="feelbetter-list">
-                       <li>Adopt A Pet Dog</li>
-                       <li>Host A Dinner Party With Friends</li> 
-                       <li>Play With Legos
-                       <li>Make Coffee Ice Cubes</li>
-                       <li>Have A Karaoke Night</li>
-                       <li>Volunteer To Babysit For A Friend</li>
-                       <li>Try A Science Experiment</li>
-                       <li>Learn To Juggle</li>
-                       <li>Have A Water Balloon Fight</li>
-                       <li>Take A Power Nap</li>
-                       <li>Make S'mores</li>
-                       <li>Watch The Sunset</li>
-                   </ul>
-               </p> 
-                
+                     Here is a list of things to do that should make you feel better.
+                    <ol class="feelbetter-list">
+                        <li>Adopt A Pet Dog</li>
+                        <li>Host A Dinner Party With Friends</li>
+                        <li>Play With Legos
+                        <li>Make Coffee Ice Cubes</li>
+                        <li>Have A Karaoke Night</li>
+                        <li>Volunteer To Babysit For A Friend</li>
+                        <li>Try A Science Experiment</li>
+                        <li>Learn To Juggle</li>
+                        <li>Have A Water Balloon Fight</li>
+                        <li>Take A Power Nap</li>
+                        <li>Make S'mores</li>
+                        <li>Watch The Sunset</li>
+                    </ol>
+                </div>
+
+               <p>
+                   And now do you feel better?<br/>
+
+                    <div id="buttons-better">
+                        <button>Yes</button>
+                        <button>No</button>
+                    </div>
+               </p>
+
+               <form id="survey" style="display: none">
+
+                <!-- Span will be filled by JS -->
+                <span id="survey-heading"></span>
+
+                <label for="why-better-input">Write a short sentence here.</label><br/>
+                <input id="why-better-input" type="text" />
+                <br/>
+
+                <label for="why-better-textarea">In case you want to write more.</label><br/>
+                <textarea id="why-better-textarea" ></textarea>
+                <br/>
+
+                <label for="why-better-select">
+                    Or select options from a dropdown menu.
+                </label><br/>
+                <select id="why-better-select">
+                    <option>--</option>
+                    <option>Pandemic</option>
+                    <option>War</option>
+                    <option>Bitcoin plummeted</option>
+                    <option>JavaScript</option>
+                </select>
+
+                <input type="submit" value="Submit" />
+
+            </form>
+
             </div>
         </div>
 
+        <!-- Load scripts created in previous exercises. -->
+        <script src="./js/tabs.js"></script>
+
         <script>
-           
 
-            // Tabs.
-            let currentTab = null;
-            function displayTab(tabId) {
-                // We need to change the class name of both the tab
-                // and its navigation link. 
-                if (currentTab) {
-                    let linkId = currentTab.id.replace("tab", "power");
-                    document.getElementById(linkId).className = 'nav-link';
-                    currentTab.className = 'tab';
+            // Uncomment for step-by-step execution.
+            // debugger;
+
+            // Survey about feelings.
+            document.getElementById('buttons-better').onclick = function(event) {
+                let surveyHeading = document.getElementById('survey-heading');
+                if (event.target.innerText === 'Yes') {
+                    surveyHeading.innerHTML = 'Please tell us why you are feeling better now.';
                 }
-                let linkId = tabId.replace("tab", "power");
-                document.getElementById(linkId).className = 'nav-link active';
-                currentTab = document.getElementById(tabId);
-                currentTab.className = 'tab tab-active';
-            }
+                else {
+                    surveyHeading.innerHTML = 'Please tell us why you are <em>not</em> feeling better now.';
+                }
+                // A bit more space.
+                surveyHeading.innerHTML += '<br/><br/>';
 
-            document.getElementById('power-yes').onclick = function() {
-                displayTab("tab-yes");
-            };
-            document.getElementById('power-maybe').onclick = function() {
-                displayTab("tab-maybe");
-            };
-            document.getElementById('power-no').onclick = function() {
-                displayTab("tab-no");
-            };
-          
+                // Exercise: make the survey visible and 
+                // smooth scroll into view.
+                
+                 // Retrieve survey.
+                let survey = document.getElementById('survey');
+
+                // Make the survey visible.
+                document.getElementById('survey').style.display = '';
+
+                // ScrollIntoView is not available in older browser,
+                // check if it is defined.
+                if ('function' === typeof survey.scrollIntoView) {
+                    survey.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'end'
+                    });
+                }
+            }
 
         </script>
     </body>
