@@ -2,6 +2,15 @@
 
 Divided in modules.
 
-And it is supposed to be a bit funny. Only supposed.
+And it is supposed to be a bit funny. Only supposed to.
 
-It includes the JS Fundamentals Course for Beginners.
+---
+
+It also supposes that you have taken the introductory JS Fundamentals Course for Beginners:
+
+- [Basics](https://github.com/shakty/intro-js) 
+- [Browser](https://github.com/shakty/intro-browser)
+
+and that you survived day 1:
+
+- [Day 1](https://github.com/shakty/app-dev-day-1)
