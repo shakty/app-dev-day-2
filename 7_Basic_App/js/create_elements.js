@@ -1,4 +1,5 @@
 function doSolution() {
+  
   fetchThingsToDo(todos => {
     todos.forEach(todo => {
         let li = document.createElement('li');
