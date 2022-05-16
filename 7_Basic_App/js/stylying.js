@@ -3,11 +3,18 @@
 
 // Option 4: Modify the style property via JS.
 let divAbove = document.getElementById("above");
+
+
 divAbove.style.background = '#CCC';
 divAbove.style.border = '1px solid black';
+
 // CSS property box-shadow needs to be quoted in JS to 
 // avoid confusion with the minus sign. 
+
 divAbove.style['box-shadow'] = '2px 2px';
+
+// Alternatively, you can tranform it in camelCase notation:
+// divAbove.style.boxShadow = '2px 2px';
 
 // Nicer shadows:
 // https://getcssscan.com/css-box-shadow-examples
