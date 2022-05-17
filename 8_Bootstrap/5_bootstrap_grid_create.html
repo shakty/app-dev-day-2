@@ -212,7 +212,7 @@
       },
       {
         title: 'Watch The Sunset.',
-        description: 'Really',
+        description: 'Really.',
         link: 'https://i.pinimg.com/originals/54/e4/ef/54e4efc532962909ac803fe3ab47561a.jpg'
       }
     ];
@@ -225,20 +225,20 @@
     // on every display.
 
     // Ref: 
-    // https://getbootstrap.com/docs/4.6/layout/grid/#auto-layout-columns
+    // https://getbootstrap.com/docs/5.1/layout/grid/#auto-layout-columns
 
     // Ref:
-    /// https://getbootstrap.com/docs/4.6/utilities/spacing/
+    /// https://getbootstrap.com/docs/5.1/utilities/spacing/
 
     // Ref: 
-    // https://getbootstrap.com/docs/4.6/components/card/#grid-cards
+    // https://getbootstrap.com/docs/5.1/components/card/#grid-cards
 
     // Hint: What happens if you combine multiple classes?
 
 
     function getActivityCard(card) {
       let template =
-        `                    <div class="col-sm-3 mb-4">
+        `<div class="col-sm-3 mb-4">
           <div class="card h-100">
             <div class="card-body">
               <h5 class="card-title">${card.title}</h5>
@@ -248,8 +248,8 @@
               <a target="_blank" href="${card.link}" class="btn btn-primary">Do it!</a>
             </div>
           </div>
-        </div>
-`
+        </div>`;
+        
       return template;
     }
 

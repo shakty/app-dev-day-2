@@ -195,18 +195,18 @@
 
     function getActivityCard(card) {
       let template =
-`                    <div class="col-sm-3 mb-4">
-                <div class="card h-100">
-                  <div class="card-body">
-                    <h5 class="card-title">${card.title}</h5>
-                    <p class="card-text">${card.description}</p>
-                  </div>
-                  <div class="card-footer">
-                    <a target="_blank" href="${card.link}" class="btn btn-primary">Do it!</a>
-                  </div>
-                </div>
+          `<div class="col-sm-3 mb-4">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">${card.title}</h5>
+                <p class="card-text">${card.description}</p>
               </div>
-`
+              <div class="card-footer">
+                <a target="_blank" href="${card.link}" class="btn btn-primary">Do it!</a>
+              </div>
+            </div>
+          </div>`;
+
       return template;
     }
 
@@ -275,6 +275,9 @@
         }
       ];
 
+      // This is a bit showing-off...We could have just used 
+      // the setTimeout method, without wrapping it inside a Promise.
+      // But it's great to refresh how promises are created, isn't it?
       return await new Promise((resolve, reject) => {
         setTimeout(() => resolve(activities), 6010);
       });
