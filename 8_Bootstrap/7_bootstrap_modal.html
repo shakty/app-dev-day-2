@@ -12,12 +12,12 @@
   // Exercise 1. Create the Modal.
   ////////////////////////////////
 
-  1.a First, you need to think about the data structure for storing the activities.
-  Look back at the previous file and what are the elements that you need to store. 
+  You are lucky again that the template for the modal has been alrady added into the HTML. The reference is here:
 
-  Did you do it? It should come to your mind, that there is a simple data structure to use... Store that data structure in a variable named "activities".
-  
-  1.b OK, now you need to something with that data structure. Create a function takes in input that activities variable and renders it in the same way it was in previous file.
+  https://getbootstrap.com/docs/5.1/components/modal/
+
+  It is a simple popup asking to 
+
 
 -->
 
@@ -191,19 +191,11 @@
 
 
   <!-- Solution -->
-  <!-- <script src="solutions/modal.js"></script> -->
+  <script src="solutions/modal.js"></script>
 
   <script>
 
-    $('#yes-do-survey').click(() => {
-      window.location.href = "8_bootstrap_forms.html";
-    });
-
-    // If the modal is hidden unbind the jQuery hover on footer.
-    $('#surveyModal').on('hidden.bs.modal', function (event) {
-      $("div.card-footer").unbind("mouseenter mouseleave");
-    });
-
+   
     // Do something about it.
     function doSomethingAboutIt() {
 
@@ -251,13 +243,26 @@
 
           // Your code here.
 
-          // doSolution();
+          doSolution();
 
         })();
 
       });
 
     }
+
+    // The functions below adds additional functionalities to the modal popup, 
+    // but are outside of the exercise's scope.
+
+    $('#yes-do-survey').click(() => {
+      window.location.href = "8_bootstrap_forms.html";
+    });
+
+    // If the modal is hidden unbind the jQuery hover on footer.
+    $('#surveyModal').on('hidden.bs.modal', function (event) {
+      $("div.card-footer").unbind("mouseenter mouseleave");
+    });
+
 
   </script>
 </body>
