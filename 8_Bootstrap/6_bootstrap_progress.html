@@ -4,6 +4,30 @@
 <head>
   <title>Bootstrap Progress</title>
 
+  <!-- 
+  
+  Here we learn/review two things.
+  
+  - How to create a progress bar in Bootstrap (this should be new!)
+  - How to simulate async fetching of activities (this should ring a bell...)
+
+  // Exercise 1. Creates the update function for a progress bar.
+  //////////////////////////////////////////////////////////////
+
+  Good for you that you have the template for the progress bar already in place below in the page (look for a div with class "progres"). Here is where we took it from and adapt it:
+
+  https://getbootstrap.com/docs/5.1/components/progress/
+
+  Now you simply have to create an update function named "updateProgress" to simulate the progress in fetching the activities from a remote server.
+
+
+  // Exercise 2. Simulate fetching from a remote server.
+  //////////////////////////////////////////////////////
+
+  Create a function that returns the list of activities asynchronously. Name this function "fetchActivities".
+
+-->
+
   <!-- Bootstrap -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -142,6 +166,13 @@
 
 
   </div>
+  
+  <!-- This script contains the functions to render the row of activities -->
+  <script src="solutions/progress.js"></script>
+
+
+  <!-- Solution -->
+  <!-- <script src="solutions/progress.js"></script> -->
 
 
   <script>
@@ -159,20 +190,25 @@
 
         $('#row-progress').fadeIn();
       
-        // Simulate receiving data and updatign progress.
+        // Simulate receiving data and updating progress.
         let updates = [ 0, 20, 40, 60, 80, 100 ];
         updates.forEach((update, idx) => {
+          // Important! You need to create function updateProgress.
           setTimeout(() => updateProgress(update), idx * 1000);
         });
+
+
+        // Comment this return statement if you have finished Ex. 1.
+        return;
 
         // Self-executing anonymous async function.
         (async () => {
 
-          let activities = await fetchActivities();
+          // Important! You need to create function fetchActivities.
+          let activitiesFetched = await fetchActivities();
+          let row = createActivitiesRow(activitiesFetched);
 
           $('#row-progress').fadeOut("fast");
-
-          let row = createActivitiesRow(activities);
 
           // Get the second element with class .container,
           // and append the row with activities cards.
@@ -191,118 +227,6 @@
         
       });
       
-    }
-
-    function getActivityCard(card) {
-      let template =
-          `<div class="col-sm-3 mb-4">
-            <div class="card h-100">
-              <div class="card-body">
-                <h5 class="card-title">${card.title}</h5>
-                <p class="card-text">${card.description}</p>
-              </div>
-              <div class="card-footer">
-                <a target="_blank" href="${card.link}" class="btn btn-primary">Do it!</a>
-              </div>
-            </div>
-          </div>`;
-
-      return template;
-    }
-
-    async function fetchActivities(cb) {
-       // Activity Cards.
-        let activities = [
-        {
-          title: 'Adopt A Pet Dog.',
-          description: 'Don\'t wait, the bet pets go early.',
-          link: 'https://www.petfinder.com/pet-adoption/dog-adoption/'
-        },
-        {
-          title: 'Host A Dinner Party With Friends.',
-          description: 'Pandemic friendly.',
-          link: 'https://www.foxnews.com/food-drink/coronavirus-self-isolation-how-dinner-party-quarantine'
-        },
-        { 
-          title: 'Play With Legos.',
-          description: 'You won\'t believe what you can do with plastic bricks.',
-          link: 'https://bestlifeonline.com/lego-structures/'
-        },
-        {
-          title: 'Make Coffee Ice Cubes.',
-          description: 'It takes just 10 minutes.',
-          link: 'https://www.delish.com/cooking/recipe-ideas/recipes/a53453/coffee-ice-cubes-recipe/'
-        },
-        {
-          title: 'Have A Karaoke Night.',
-          description: 'Or Karaoke Mondays.',
-          link: 'https://www.youtube.com/watch?v=L9fOLMDkQoU'
-        },
-        {
-          title: 'Volunteer To Babysit For A Friend.',
-          description: 'Or not.',
-          link: 'https://wehavekids.com/childcare/How-to-Avoid-Babysitting-Your-Friends-Children'
-        },
-        {
-          title: 'Try A Science Experiment.',
-          description: 'Great questions to be answered still.',
-          link: 'https://www.ranker.com/list/science-fair-fails/nathandavidson'
-        },
-        {
-          title: 'Learn To Juggle.',
-          description: 'With supporting text below as a natural lead-in to additional content.',
-          link: 'https://www.youtube.com/watch?v=7RDfNn7crqE'
-        },
-        {
-          title: 'Have A Water Balloon Fight.',
-          description: 'The largest one involved 8,957 people. Pre-pandemic.',
-          link: 'https://www.guinnessworldrecords.com/world-records/largest-water-balloon-fight'
-        },
-        {
-          title: 'Take A Power Nap.',
-          description: 'Take a Nap! Change Your Life.',
-          link: 'https://www.webmd.com/balance/features/the-secret-and-surprising-power-of-naps'
-        },
-        {
-          title: 'Make S\'mores.',
-          description: 'Ready. In. 3. Minutes.',
-          link: 'https://www.allrecipes.com/recipe/22146/smores/'
-        },
-        {
-          title: 'Watch The Sunset.',
-          description: 'Really',
-          link: 'https://i.pinimg.com/originals/54/e4/ef/54e4efc532962909ac803fe3ab47561a.jpg'
-        }
-      ];
-
-      // This is a bit showing-off...We could have just used 
-      // the setTimeout method, without wrapping it inside a Promise.
-      // But it's great to refresh how promises are created, isn't it?
-      return await new Promise((resolve, reject) => {
-        setTimeout(() => resolve(activities), 6010);
-      });
-    }
-
-    function createActivitiesRow(cards) {
-      let row = document.createElement('div');
-      row.className = 'row align-items-center mt-4';
-      row.id = 'feelbetter-grid';
-      
-      let group = document.createElement('div');
-      group.className = 'card-group';
-
-      row.appendChild(group);
-
-      cards.forEach(card => {
-        group.innerHTML += '\n' + getActivityCard(card);
-      });
-
-      return row;
-    }
-
-    // Update Progress bar.
-    function updateProgress(x) {
-      document.getElementById("progress-bar").style.width = x + '%';
     }
 
 </script>
