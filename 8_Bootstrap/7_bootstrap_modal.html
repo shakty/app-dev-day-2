@@ -4,6 +4,24 @@
 <head>
   <title>Bootstrap Modal</title>
 
+  
+<!-- 
+  
+  You write "modal" but you read "popup". If you are tired of the old-school "alert", modals offer a much improved and customizable way to display a full-screen message box.
+
+  // Exercise 1. Create the Modal.
+  ////////////////////////////////
+
+  1.a First, you need to think about the data structure for storing the activities.
+  Look back at the previous file and what are the elements that you need to store. 
+
+  Did you do it? It should come to your mind, that there is a simple data structure to use... Store that data structure in a variable named "activities".
+  
+  1.b OK, now you need to something with that data structure. Create a function takes in input that activities variable and renders it in the same way it was in previous file.
+
+-->
+
+
   <!-- Bootstrap -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -167,7 +185,13 @@
     </div>
   </div>
 
-  <script src="js/activities.js"></script>
+  <!-- These scripts contain the functions to render the row of activities -->
+  <script src="solutions/grid_create.js"></script>
+  <script src="solutions/progress.js"></script>
+
+
+  <!-- Solution -->
+  <!-- <script src="solutions/modal.js"></script> -->
 
   <script>
 
@@ -182,11 +206,6 @@
 
     // Do something about it.
     function doSomethingAboutIt() {
-
-      // Create a new Modal object from our HTML template.
-      let myModal = new bootstrap.Modal(
-        document.getElementById('surveyModal')
-      );
 
       // In principle, we could add async to this callback,
       // however, jQuery is complaining, so need to create
@@ -215,14 +234,7 @@
           // and append the row with activities cards.
           document.querySelectorAll('.container')[1].appendChild(row);
 
-          // 1sec after hoovering over a footer we show the modal
-          // of the survey.
-          $("div.card-footer").hover(function () {
-            setTimeout(() => {
-              myModal.show();
-            }, 1000);
-          });
-
+          
           // A little extra delay feels better.
           setTimeout(() => {
             $("#feelbetter-grid").fadeIn("slow")[0].scrollIntoView({
@@ -231,6 +243,15 @@
             });
 
           }, 300);
+
+
+          // Important! Add your code here.
+          // Detect that the mouse is hovering over a card's footer and 
+          // then display the modal.
+
+          // Your code here.
+
+          // doSolution();
 
         })();
 
