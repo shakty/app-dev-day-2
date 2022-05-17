@@ -1,33 +1,34 @@
+// Validation functions.
+////////////////////////
+
+// Simple Regex function.
 const ABC_VALIDATE = text => /^[a-z ,.'-]+$/i.test(text);
 
+// Complex Regex function. What the heck is this?!
 const EMAIL_VALIDATE = text => {
     return /(?:[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/i.test(text);
 };
 
+// Validation without regex. Here it is much easier to understand 
+// what's going on. Regex use should be limited to simple cases,
+// because it is easy to make mistakes.
 const PWD_VALIDATE = text => {
     // Must be at least 8 characters.
     // Contain at least one number or special character.
     return text.length >= 8 && !ABC_VALIDATE(text);
 };
 
+// Trimmed text must not be an empty string.
 const NOT_EMPTY_VALIDATE = text => text.trim() !== "";
 
-// US ZIP code format.
+// Regex for US ZIP code format.
 const ZIP_VALIDATE = text => /^\d{5}(-\d{4})?$/.test(text);
 
-const errMsgs = {
-    
-    abc: 'Cannot contain numbers',
 
-    email: 'Email not valid',
+// Functions for validation of forms.
+/////////////////////////////////////
 
-    pwd: 'Must be at least 8 chars and contain a number or a special char',
-
-    noEmpty: 'Cannot be empty',
-
-    zip: 'Zip-code not valid'
-};
-
+// Execute validation callback and set class accordingly.
 function validateAndSetClass(form) {
 
     let id = form.id;
@@ -49,101 +50,81 @@ function validateAndSetClass(form) {
         cb = ZIP_VALIDATE;
     }
 
-    console.log(id, cb)
-
-    testInputAndSetClass(form, cb);
+    _validateAndSetClass(form, cb);
 }
 
-function testInputAndSetClass(input, validateCb) {
+function _validateAndSetClass(form, validateCb) {
 
-    let valid = validateCb(input.value);
+    let valid = validateCb(form.value);
 
     if (valid) {
-        input.classList.remove('is-invalid');
-        input.classList.add('is-valid');
+        form.classList.remove('is-invalid');
+        form.classList.add('is-valid');
 
     }
     else {
-        input.classList.remove('is-valid');
-        input.classList.add('is-invalid');
+        form.classList.remove('is-valid');
+        form.classList.add('is-invalid');
     }
 
+    return valid;
 }
 
-function addEventListenerToInput(input) {
-    input.addEventListener('input', function () {
-        validateAndSetClass(input);
-    });
+// We add a div with class .invalid-feedback containing the error msg.
+function addValidation(form) {
+    // Every time a character is added, validate input.
+    form.addEventListener('input', function () {
+       validateAndSetClass(form);
+   });
+   // If user clicks/tabs over an input remove
+   // existing is-invalid class (user is making a correction).
+   form.addEventListener('focus', function () {
+       form.classList.remove('is-invalid');
+   });
+
+   // Uncomment for Exercise 2!
+   // Add feedback when validation fails.
+   // addFeedbackToInput(form);
 }
 
-function showErrMsg(form) {
-    let id = form.id;
-    let err;
 
-    if (id === "first" || id === "last" || id === "city") {
-        err = errMsgs.abc;
-    }
-    if (id === "email") {
-        err = errMsgs.email;
-    }
-    else if (id === "pwd") {
-        err = errMsgs.pwd;
-    }
-    else if (id === "address") {
-        err = errMsgs.noEmpty;
-    }
-    else if (id === "zip") {
-        err = errMsgs.zip;
-    }
-
-    let div = document.createElement('div');
-    div.className = 'invalid-feedback';
-    div.innerHTML = err;
-    form.parentElement.appendChild(div);
-}
-
-function hideErrMsg(form) {
-    // form.parentElement.remove
-    // TODO.
-}
+// Validation logic.
+////////////////////
 
 (function () {
 
     // Fetch all the forms that need validation.
     let forms = document.querySelectorAll('.form-control');
 
-    // Loop over them and prevent submission
+    // Loop over them and add validation where needed.
     forms.forEach(function (form) {
         if (form.classList.contains('needs-validation')) {
-            addEventListenerToInput(form);
+            addValidation(form);
         }
     });
 
+    // On submit evaluate all forms, collect data,
+    // and simulate submit if no errors are found.
     let submit = document.querySelector('button');
-
     submit.addEventListener('click', function (event) {
         let data = {};
-        let valid = true;
+        let submit = true;
 
         forms.forEach(function (form) {
 
             if (form.classList.contains('needs-validation')) {
-                validateAndSetClass(form);  
+                let valid = validateAndSetClass(form);
+                // If one form is not valid, stops submission, but
+                // keep validating remaining forms.
+                if (!valid) submit = false;
             }
-
-            if (form.classList.contains('is-invalid')) {
-                valid = false;
-
-                showErrMsg(form);
-
-                return;
-            }
-
+            
+            // Store information.
             data[form.id] = form.value;
 
         });
 
-        if (valid) {
+        if (submit) {
             console.log('Submitting data...');
             console.log(data);
         }

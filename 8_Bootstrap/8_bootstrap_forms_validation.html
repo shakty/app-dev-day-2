@@ -4,6 +4,35 @@
 <head>
   <title>Bootstrap Forms Validation</title>
 
+  <!--
+
+    We can't simply submit anything! We need to validate that the user is sending the expected format. Validation can be done server-side or client-side. Or both.
+
+    However, a good user experience generally requires client-side validation, so we add it here.
+
+    // Exercise 1. Validation Validation.
+    /////////////////////////////////////
+
+    No code is necessary, but a fine understanding of how validation works. 
+    
+    The solution involves a bit of JS logic and you can study it here:
+    
+    solutions/validation.js 
+    
+    If you understand it, you will see that it contains a line that needs to be uncommented for Exercise 2.
+
+  
+    // Exercise 2. Custom Error Messages.
+    /////////////////////////////////////
+
+    Improve upon the solution of exercise 1, by adding a custom error message for every form that fails validation.
+
+    Name the function adding these custom messages "addFeedbackToInput".
+
+    // Hint: class="invalid-feedback"
+
+  -->
+
   <!-- Bootstrap -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -81,11 +110,11 @@
 
   </div>
 
+  <!-- Solution (must be loaded before the next file) -->
+  <script src="solutions/validation_feedback.js"></script>
+
   <script src="solutions/validation.js"></script>
 
-  <script>
-
-  </script>
 </body>
 
 </html>
