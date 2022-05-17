@@ -13,7 +13,7 @@
 // network requests by serving files (hmtl pages, images, videos, JSON, ...).
 
 // The philosophy of Express is to be minimal and to allow for 
-// complex configurations by the programmers.
+// complex configurations by programmers.
 
 // Exercise 1: Create your first Express server.
 ////////////////////////////////////////////////
