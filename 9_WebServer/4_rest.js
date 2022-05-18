@@ -76,8 +76,9 @@ app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`));
 // all the activities used in the Bootstrap chapter. 
 
 
-// b. Copy index.html and name it fetch.html. Update it to to fetch
-// the activities using the REST API that you just created here.
+// b. Copy index.html and name it fetch.html. 
+// Update it to to fetch the activities using the REST API
+// that you just created here.
 // Hint: use fetch or axios.
 
 
@@ -104,7 +105,10 @@ app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`));
 // as returned by getActivities().
 // 
 // - Copy file fetch.html and rename to fetch_one.html and fetch
-// a random activity.
+// a _random_ activity.
+
+// Hint: generate a random integer between 0 and 11 (tot num of activities):
+// https://www.w3schools.com/JS/js_random.asp  
 
 
 

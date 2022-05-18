@@ -112,10 +112,11 @@ app.get("/activities/", async (req, res) => {
 // as returned by getActivities().
 // 
 // - Copy file fetch.html and rename to fetch_one.html and fetch
-// a random activity.
+// a _random_ activity.
 
 // Hint: generate a random integer between 0 and 11 (tot num of activities):
 // https://www.w3schools.com/JS/js_random.asp  
+
 
 app.get("/activities/:id", async (req, res) => {
 	const activities = await getActivities();

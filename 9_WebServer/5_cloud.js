@@ -59,7 +59,10 @@
 // b. You will get assigned a unique URL for your web site, such as
 // thawing-inlet-61413.herokuapp.com.
 
-// Locally: copy the file fetch_post.html to fetch_post_remote.html,
+// Update the js files of the heroku app to fetch the list of activities
+// from this address.
+
+// c. Locally: copy the file fetch_post.html to fetch_post_heroku.html,
 // and fetch the list of activities from the remote server on Heroku.
 
 // You will be soon struck by a CORS error. What are CORS?
