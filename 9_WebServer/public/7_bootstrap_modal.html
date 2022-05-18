@@ -4,6 +4,24 @@
 <head>
   <title>Bootstrap Modal</title>
 
+  
+<!-- 
+  
+  You write "modal" but you read "popup". If you are tired of the old-school "alert", modals offer a much improved and customizable way to display a full-screen message box.
+
+  // Exercise 1. Create the Modal.
+  ////////////////////////////////
+
+  You are lucky again that the template for the modal has been alrady added into the HTML. The reference is here:
+
+  https://getbootstrap.com/docs/5.1/components/modal/
+
+  It is a simple popup asking to 
+
+
+-->
+
+
   <!-- Bootstrap -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -167,25 +185,19 @@
     </div>
   </div>
 
-  <script src="js/activities.js"></script>
+  <!-- These scripts contain the functions to render the row of activities -->
+  <script src="js/grid_create.js"></script>
+  <script src="js/progress.js"></script>
+
+
+  <!-- Solution -->
+  <script src="js/modal.js"></script>
 
   <script>
 
-    $('#yes-do-survey').click(() => {
-      window.location.href = "8_bootstrap_forms.html";
-    });
-
-    // If the modal is hidden unbind the jQuery hover on footer.
-    $('#surveyModal').on('hidden.bs.modal', function (event) {
-      $("div.card-footer").unbind("mouseenter mouseleave");
-    });
-
+   
     // Do something about it.
     function doSomethingAboutIt() {
-
-      let myModal = new bootstrap.Modal(
-        document.getElementById('surveyModal')
-      );
 
       // In principle, we could add async to this callback,
       // however, jQuery is complaining, so need to create
@@ -214,14 +226,7 @@
           // and append the row with activities cards.
           document.querySelectorAll('.container')[1].appendChild(row);
 
-          // 1sec after hoovering over a footer we show the modal
-          // of the survey.
-          $("div.card-footer").hover(function () {
-            setTimeout(() => {
-              myModal.show();
-            }, 1000);
-          });
-
+          
           // A little extra delay feels better.
           setTimeout(() => {
             $("#feelbetter-grid").fadeIn("slow")[0].scrollIntoView({
@@ -231,11 +236,33 @@
 
           }, 300);
 
+
+          // Important! Add your code here.
+          // Detect that the mouse is hovering over a card's footer and 
+          // then display the modal.
+
+          // Your code here.
+
+          doSolution();
+
         })();
 
       });
 
     }
+
+    // The functions below adds additional functionalities to the modal popup, 
+    // but are outside of the exercise's scope.
+
+    $('#yes-do-survey').click(() => {
+      window.location.href = "8_bootstrap_forms.html";
+    });
+
+    // If the modal is hidden unbind the jQuery hover on footer.
+    $('#surveyModal').on('hidden.bs.modal', function (event) {
+      $("div.card-footer").unbind("mouseenter mouseleave");
+    });
+
 
   </script>
 </body>
