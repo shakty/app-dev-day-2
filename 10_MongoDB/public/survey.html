@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Bootstrap Forms Validation</title>
+
+  <!--
+
+    We can't simply submit anything! We need to validate that the user is sending the expected format. Validation can be done server-side or client-side. Or both.
+
+    However, a good user experience generally requires client-side validation, so we add it here.
+
+    // Exercise 1. Validation Validation.
+    /////////////////////////////////////
+
+    No code is necessary, but a fine understanding of how validation works. 
+    
+    The solution involves a bit of JS logic and you can study it here:
+    
+    solutions/validation.js 
+    
+    If you understand it, you will see that it contains a line that needs to be uncommented for Exercise 2.
+
+  
+    // Exercise 2. Custom Error Messages.
+    /////////////////////////////////////
+
+    Improve upon the solution of exercise 1, by adding a custom error message for every form that fails validation.
+
+    Name the function adding these custom messages "addFeedbackToInput".
+
+    // Hint: class="invalid-feedback"
+
+  -->
+
+  <!-- Bootstrap -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+  <!-- End Bootstrap -->
+
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Fill-in a Small Survey</h1>
+
+    <div class="row">
+      <div class="form-group col-md-6 mb-3">
+        <label for="first">First Name</label>
+        <input type="text" class="form-control needs-validation" id="first" name="first">
+      </div>
+      <div class="form-group col-md-6 mb-3">
+        <label for="last">Last Name</label>
+        <input type="text" class="form-control needs-validation" id="last" name="last">
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-6 mb-3">
+        <label for="email">Email</label>
+        <input type="email" class="form-control needs-validation" id="email" name="email">
+      </div>
+      <div class="form-group col-md-6 mb-3">
+        <label for="pwd">Password</label>
+        <input type="password" class="form-control needs-validation" name="pwd" id="pwd">
+      </div>
+    </div>
+    <div class="form-group mb-3">
+      <label for="address">Address</label>
+      <input type="text" class="form-control needs-validation" id="address" name="address" placeholder="1234 Main St">
+    </div>
+    <div class="form-group mb-3">
+      <label for="address2">Address 2</label>
+      <input type="text" class="form-control" id="address2" name="address2" placeholder="Apartment, studio, or floor">
+    </div>
+    <div class="row">
+      <div class="form-group col-md-6 mb-3">
+        <label for="city">City</label>
+        <input type="text" class="form-control needs-validation" id="city" name="city">
+      </div>
+      <div class="form-group col-md-4 mb-3">
+        <label for="state">State</label>
+        <select id="state" class="form-control">
+          <option selected>JSLand</option>
+          <option>Wonderland</option>
+        </select>
+      </div>
+      <div class="form-group col-md-2 mb-3">
+        <label for="zip">Zip</label>
+        <input type="text" class="form-control needs-validation" id="zip">
+      </div>
+    </div>
+    <div class="form-group mb-3">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="newsletter" name="newsletter">
+        <label class="form-check-label" for="newsletter">
+          Subscribe me to the newsletter.
+        </label>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+
+  <script src="js/validation.js"></script>
+  <script>
+    async function submitData(data) {
+      let opts = {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          // 'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: JSON.stringify({ 
+          key: "123",
+          data: data 
+        })
+      };
+
+      return await fetch('http://localhost:3000/survey/', opts)
+        .then(res => {
+          if (res.status >= 400) {
+            throw new Error("Bad response from server");
+          }
+          return res.json();
+        });
+    }
+
+  </script>
+</body>
+
+</html>

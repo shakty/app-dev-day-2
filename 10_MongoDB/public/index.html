@@ -189,26 +189,34 @@
   </div>
 
   <!-- These scripts contain the functions to render the row of activities -->
-  <script src="js/grid_create.js"></script>
-  <script src="js/progress.js"></script>
-  <script src="js/modal.js"></script>
+  <script src="js/activities.js"></script>
 
-  <!-- Must go before logic.js -->
   <script>
-    // This function is overwriting the default fetchActivities().
+
+
     async function fetchActivities() {
-      return await fetch('http://localhost:3000/activities/')
+      
+      let opts = {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          // 'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: JSON.stringify({ key: "123" })
+      };
+
+      return await fetch('http://localhost:3000/activities/', opts)
         .then(res => {
           if (res.status >= 400) {
             throw new Error("Bad response from server");
           }
           return res.json();
         });
-    }   
+    }
+
+
+
   </script>
-
-
-  <script src="js/logic.js"></script>
 </body>
 
 </html>

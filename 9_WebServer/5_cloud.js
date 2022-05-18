@@ -38,12 +38,13 @@
 // https://devcenter.heroku.com/articles/procfile
 //
 // TL;DR, a Procfile is a file named Procfile (without extentions) containing:
-// web: node 4_rest.js
+// web: node app.js
 
 // 6. Copy package.json inside the folder: it will tell Heroku which
 // dependencies to install (e.g., express).
 
-// 7. Create a public/ folder and add fetch_post.html, the css and js folders.
+// 7. Create a public/ folder and add fetch_post.html, 8_bootstrap_forms.html,
+// the css and js folders, and the favicon.ico file.
 // Rename fetch_post.html to index.html.
 
 // 8. Head over to:
@@ -58,7 +59,10 @@
 // b. You will get assigned a unique URL for your web site, such as
 // thawing-inlet-61413.herokuapp.com.
 
-// Locally: copy the file fetch_post.html to fetch_post_remote.html,
+// Update the js files of the heroku app to fetch the list of activities
+// from this address.
+
+// c. Locally: copy the file fetch_post.html to fetch_post_heroku.html,
 // and fetch the list of activities from the remote server on Heroku.
 
 // You will be soon struck by a CORS error. What are CORS?

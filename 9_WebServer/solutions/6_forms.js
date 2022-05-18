@@ -5,34 +5,13 @@
 // Module: Web Server.
 //////////////////////
 
-// Exercise 5: REST.
-////////////////////
+// Exercise 6: Forms.
+/////////////////////
 
-// REST (Representational Transfer State) is a widely used pattern
-// to create API which is implemented by Express.
-
-// It contains four methods to do CRUD operations: 
-
-// - POST:     Create a new resource, 
-// - GET:      Read an existing resource,
-// - PUT:      Update an existing resource,
-// - DELETE:   Delete an exiting resource.
-
-// More details here: 
-// https://restfulapi.net/
-// https://www.edureka.co/blog/what-is-rest-api/
-
-// In practice this semantic representation is seldom implemented in full,
-// and only GET and POST requests are used. 
-
-// The main difference between GET and POST is that POST submits additional
-// information as a payload to body of the HTTP request, while GET as a query
-// string. For this, POST is preferred when larger pieces of information are 
-// transferred or when dealing with sensitive data. 
-
-// More details here:
-// https://www.w3schools.com/tags/ref_httpmethods.asp
-// https://www.guru99.com/difference-get-post-http.html
+// Here we learn a little bit more about forms, automatic POST
+// requests by the browser vs custom fetch requests, how to use
+// express-validator to validate incoming remote requests,
+// and saving the incoming data to a CSV file.
 
 const express = require('express');
 const app = express();
@@ -43,7 +22,11 @@ const PORT = 3000;
 // app.use(cors());
 
 // File in directory /public/ will be cached and served.
-app.use(express.static('public'));
+const path = require('path');
+// If running from solutions' directory.
+app.use(express.static(path.join(__dirname, '..', 'public')));
+// If running from exercises' directory.
+// app.use(express.static(path.join(__dirname, 'public')));
 
 // POST (and PUT) requests require additional middleware to parse
 // the HTTP requests' body.
@@ -90,20 +73,17 @@ app.post("/activities/", async (req, res) => {
 });
 
 
-// Exercise 6: Forms.
-/////////////////////
+// Exercise.
+////////////
 
 // a. Modify public/8_bootstrap_forms.html to send data to the route
 // "/survey". Ah, I forgot: create that route.
 // What happens to client that submitted
 
 app.post("/survey/", (req, res) => {
-  console.log(req.body);
-
+  console.log('Received survey submission.');
   db.insert(req.body);
-
-  res.redirect("/");
-  // res.end(); // And handle page reload on client.
+  res.status(200).json({ success: true }); // And handle page reload on client.
 });
 
 // b. Store the data in the lightweight in-memory NDDB database. 
@@ -117,18 +97,54 @@ let db = new NDDB();
 // c. Save the data to a CSV file in the data/ folder.
 // Ah, I forgot, you need to create the data/ folder.
 
-const path = require('path');
-let fileName = path.resolve('data', 'out.csv');
-db.save(fileName, { 
+// Solutions dir.
+let fileName = path.resolve('..', 'data', 'out.csv');
+// Exercises dir.
+// let fileName = path.resolve('data', 'out.csv');
+db.stream(fileName, { 
   // Specify a custom header.
   header: [ 'email', 'address' ],
-
-  // Incrementally save to the same csv file all new entries.
-  keepUpdated: true
-
 });
+db.on('insert', item => console.log(item) );
 
+// d. Validate incoming requests with the express-validator
+// package.
 
+// Ref: https://express-validator.github.io/
+
+const { check, validationResult } = require("express-validator");
+
+app.post(
+  "/survey2/",
+
+  // Custom Server-side checks on incoming parameters.
+  
+  // We add a chain of validation middlewares. They modify
+  // the req object, that will evaluated inside our usual
+  // (req, res) => { ... } function with the method validationResult().
+
+  // Check the full list of validation API here:
+  // https://github.com/validatorjs/validator.js#sanitizers
+
+  check("pwd").isLength({ min: 5, max: 10 }),
+  check("address").not().isEmpty(),
+  check("city").not().isEmpty(),
+  check("state").not().isEmpty(),
+
+  (req, res) => {
+
+    // Finds the validation errors in this request 
+    // and wraps them in an object with handy functions.
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    db.insert(req.body);
+
+    return res.status(200).json({ success: true });
+  }
+);
 
 // Get Activities Functions.
 ////////////////////////////

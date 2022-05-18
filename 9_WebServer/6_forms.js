@@ -23,7 +23,8 @@ const PORT = 3000;
 // app.use(cors());
 
 // File in directory /public/ will be cached and served.
-app.use(express.static("public"));
+const path = require('path');
+app.use(express.static(path.join(__dirname, 'public')));
 
 // POST (and PUT) requests require additional middleware to parse
 // the HTTP requests' body.
@@ -76,9 +77,9 @@ app.post("/activities/", async (req, res) => {
 // What happens to client that submitted
 
 // app.post("/survey/", (req, res) => {
-//   console.log(req.body);
-//   res.redirect("/");
-//   // res.end(); // To handle page reload on client.
+// console.log('Received survey submission.');
+// db.insert(req.body);
+// res.status(200).json({ success: true }); // And handle page reload on client.
 // });
 
 // b. Store the data in the lightweight in-memory NDDB database.
@@ -90,18 +91,15 @@ app.post("/activities/", async (req, res) => {
 // Ref: https://github.com/nodeGame/NDDB
 
 const NDDB = require("NDDB");
-const path = require("path");
 
 let db = new NDDB();
 let fileName = path.resolve("data", "out.csv");
-
-app.post("/survey/", (req, res) => {
-
-  storeAndSave(req.body);
-
-  res.redirect("/");
-  // res.end(); // To handle page reload on client.
+db.stream(fileName, { 
+  // Specify a custom header.
+  header: [ 'email', 'address' ],
 });
+db.on('insert', item => console.log(item) );
+
 
 // d. Validate incoming requests with the express-validator
 // package.
@@ -129,8 +127,6 @@ app.post(
 
   (req, res) => {
 
-    console.log(req.body);
-
     // Finds the validation errors in this request 
     // and wraps them in an object with handy functions.
     const errors = validationResult(req);
@@ -138,30 +134,12 @@ app.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    storeAndSave(req.body);
+    db.insert(req.body);
 
     return res.status(200).json({ success: true });
   }
 );
 
-// Store an item in in-memory database and save it to CSV.
-//////////////////////////////////////////////////////////
-
-function storeAndSave(item) {
-  console.log(item);
-
-  db.insert(item);
-
-  // Will always append to an existing file.
-  db.save(fileName, {
-
-    // Specify a custom header.
-    header: ["email", "address"],
-
-    // Saves only updates from previous save command.
-    updatesOnly: true,
-  });
-}
 
 // Get Activities Functions.
 ////////////////////////////
@@ -171,7 +149,7 @@ async function getActivities() {
   let activities = [
     {
       title: "Adopt A Pet Dog.",
-      description: "Don't wait, the bet pets go early.",
+      description: "Don't wait, the best pets go early.",
       link: "https://www.petfinder.com/pet-adoption/dog-adoption/",
     },
     {

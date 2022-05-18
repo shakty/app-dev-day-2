@@ -115,7 +115,7 @@ app.use("/survey3/", (req, res, next) => {
 
   let ip = req.socket.remoteAddress;
 
-  // console.log(ip);
+  console.log('IP:', ip);
 
   if (whitelistIP.indexOf(ip) !== -1) next();
   else res.status(400).json({ errors: [ { msg: `IP ${ip} not whitelisted` } ] });
@@ -151,7 +151,7 @@ app.use(
 ////////////
 
 // File in directory /public/ will be cached and served.
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // POST (and PUT) requests require additional middleware to parse
 // the HTTP requests' body.
@@ -191,7 +191,13 @@ httpsServer.listen(3000, () => {
 
 const NDDB = require("NDDB");
 let db = new NDDB();
-let fileName = path.resolve("data", "out.csv");
+let fileName = path.resolve('data', 'out.csv');
+db.stream(fileName, { 
+  // Specify a custom header.
+  header: [ 'email', 'address' ],
+});
+db.on('insert', item => console.log(item) );
+
 const { check, validationResult } = require("express-validator");
 
 
@@ -279,25 +285,6 @@ app.post(
   }
 );
 
-// Store an item in in-memory database and save it to CSV.
-//////////////////////////////////////////////////////////
-
-function storeAndSave(item) {
-  // console.log(item);
-
-  db.insert(item);
-
-  // Will always append to an existing file.
-  db.save(fileName, {
-
-    // Specify a custom header.
-    header: ["email", "address"],
-
-    // Saves only updates from previous save command.
-    updatesOnly: true,
-  });
-}
-
 
 // Activities routes.
 /////////////////////
@@ -330,7 +317,7 @@ async function getActivities() {
   let activities = [
     {
       title: "Adopt A Pet Dog.",
-      description: "Don't wait, the bet pets go early.",
+      description: "Don't wait, the best pets go early.",
       link: "https://www.petfinder.com/pet-adoption/dog-adoption/",
     },
     {

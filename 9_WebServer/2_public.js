@@ -13,7 +13,7 @@
 // network requests by serving files (hmtl pages, images, videos, JSON, ...).
 
 // The philosophy of Express is to be minimal and to allow for 
-// complex configurations by the programmers.
+// complex configurations by programmers.
 
 // Exercise 1: Create your first Express server.
 ////////////////////////////////////////////////
@@ -75,8 +75,8 @@ app.get('/secret', (req, res) => {
 // a function that will be executed before executing the callback for a route.
 // Here we do not specify a route, meaning that it applies to all routes.
 
-app.use(express.static('public'));
-
+const path = require('path');
+app.use(express.static(path.join(__dirname, 'public')));
 // Make sure there is something to serve in public. 
 // Copy over the HTML file 7_bootstrap_modal.html
 // from the previous chapter on Bootstrap and the folders css/ and js/. 

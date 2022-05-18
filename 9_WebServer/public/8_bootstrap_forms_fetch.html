@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Bootstrap Modal</title>
+  <title>Bootstrap Forms</title>
 
   <!-- Bootstrap -->
   <meta charset="utf-8">
@@ -16,62 +16,62 @@
     </head>
     <body>
         
-        <div class="container">
-            <h1>Fill-in a Small Survey</h1>
-            <form>
-                <div class="row">
-                  <div class="form-group col-md-6 mb-3">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" name="email">
-                  </div>
-                  <div class="form-group col-md-6 mb-3">
-                    <label for="pwd">Password</label>
-                    <input type="password" class="form-control" name="pwd" id="pwd">
-                  </div>
-                </div>
-                <div class="form-group mb-3">
-                  <label for="address">Address</label>
-                  <input type="text" class="form-control" id="address" name="address" placeholder="1234 Main St">
-                </div>
-                <div class="form-group mb-3">
-                  <label for="address2">Address 2</label>
-                  <input type="text" class="form-control" id="address2" name="address2" placeholder="Apartment, studio, or floor">
-                </div>
-                <div class="row">
-                  <div class="form-group col-md-6 mb-3">
-                    <label for="city">City</label>
-                    <input type="text" class="form-control" id="city" name="city">
-                  </div>
-                  <div class="form-group col-md-4 mb-3">
-                    <label for="state">State</label>
-                    <select id="state" class="form-control">
-                      <option selected>JSLand</option>
-                      <option>Wonderland</option>
-                    </select>
-                  </div>
-                  <div class="form-group col-md-2 mb-3">
-                    <label for="zip">Zip</label>
-                    <input type="text" class="form-control" id="zip">
-                  </div>
-                </div>
-                <div class="form-group mb-3">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="newsletter" name="newsletter">
-                    <label class="form-check-label" for="newsletter">
-                      Subscribe me to the newsletter.
-                    </label>
-                  </div>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </form>
-        </div>
+      <div class="container">
+        <h1>Fill-in a Small Survey</h1>
+        <form>
+            <div class="row">
+              <div class="form-group col-md-6 mb-3">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email">
+              </div>
+              <div class="form-group col-md-6 mb-3">
+                <label for="pwd">Password</label>
+                <input type="password" class="form-control" name="pwd" id="pwd">
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <label for="address">Address</label>
+              <input type="text" class="form-control" id="address" name="address" placeholder="1234 Main St">
+            </div>
+            <div class="form-group mb-3">
+              <label for="address2">Address 2</label>
+              <input type="text" class="form-control" id="address2" name="address2" placeholder="Apartment, studio, or floor">
+            </div>
+            <div class="row">
+              <div class="form-group col-md-6 mb-3">
+                <label for="city">City</label>
+                <input type="text" class="form-control" id="city" name="city">
+              </div>
+              <div class="form-group col-md-4 mb-3">
+                <label for="state">State</label>
+                <select id="state" class="form-control">
+                  <option selected>JSLand</option>
+                  <option>Wonderland</option>
+                </select>
+              </div>
+              <div class="form-group col-md-2 mb-3">
+                <label for="zip">Zip</label>
+                <input type="text" class="form-control" id="zip">
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="newsletter" name="newsletter">
+                <label class="form-check-label" for="newsletter">
+                  Subscribe me to the newsletter.
+                </label>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+    </div>
 
         <script>
-          let btn = document.getElementById('submit');
-          let form = document.getElementsByTagName('form')[0];
+          let btn = document.querySelector('button');
+          let form = document.querySelector('form');
          
           btn.onclick = function(event) {
-
+            debugger
             let opts = {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },
@@ -86,7 +86,6 @@
                 })
             };
 
-           
             if (form.checkValidity()) {
 
                // Otherwise it gets sent via a GET request.
@@ -95,7 +94,7 @@
               // Exercise.
               // Display the results of validation in a Modal.
               ////////////////////////////////////////////////
-              fetch('http://localhost:3000/survey2/', opts)
+              fetch('http://localhost:3000/survey/', opts)
                           .then(res => res.json())
                           .then(res => {
                             let str = '';
@@ -114,6 +113,7 @@
                             }
                           })
                           .catch(res => {
+                            debugger
                             console.log('Generic error:')
                             console.log(res);
                           });

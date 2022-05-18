@@ -60,7 +60,11 @@ app.use((req, res, next) => {
 });
 
 // We have used the static function in the previous exercise.
-app.use(express.static('public'));
+const path = require('path');
+// If running from solutions' directory.
+app.use(express.static(path.join(__dirname, '..', 'public')));
+// If running from exercises' directory.
+// app.use(express.static(path.join(__dirname, 'public')));
 
 // Intercepts all requests.
 app.get('/', (req, res) => {
