@@ -77,9 +77,9 @@ app.post("/activities/", async (req, res) => {
 // What happens to client that submitted
 
 // app.post("/survey/", (req, res) => {
-//   console.log(req.body);
-//   res.redirect("/");
-//   // res.end(); // To handle page reload on client.
+// console.log('Received survey submission.');
+// db.insert(req.body);
+// res.status(200).json({ success: true }); // And handle page reload on client.
 // });
 
 // b. Store the data in the lightweight in-memory NDDB database.
@@ -94,14 +94,12 @@ const NDDB = require("NDDB");
 
 let db = new NDDB();
 let fileName = path.resolve("data", "out.csv");
-
-app.post("/survey/", (req, res) => {
-
-  storeAndSave(req.body);
-
-  res.redirect("/");
-  // res.end(); // To handle page reload on client.
+db.stream(fileName, { 
+  // Specify a custom header.
+  header: [ 'email', 'address' ],
 });
+db.on('insert', item => console.log(item) );
+
 
 // d. Validate incoming requests with the express-validator
 // package.
@@ -129,8 +127,6 @@ app.post(
 
   (req, res) => {
 
-    console.log(req.body);
-
     // Finds the validation errors in this request 
     // and wraps them in an object with handy functions.
     const errors = validationResult(req);
@@ -138,30 +134,12 @@ app.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    storeAndSave(req.body);
+    db.insert(req.body);
 
     return res.status(200).json({ success: true });
   }
 );
 
-// Store an item in in-memory database and save it to CSV.
-//////////////////////////////////////////////////////////
-
-function storeAndSave(item) {
-  console.log(item);
-
-  db.insert(item);
-
-  // Will always append to an existing file.
-  db.save(fileName, {
-
-    // Specify a custom header.
-    header: ["email", "address"],
-
-    // Saves only updates from previous save command.
-    updatesOnly: true,
-  });
-}
 
 // Get Activities Functions.
 ////////////////////////////

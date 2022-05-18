@@ -81,12 +81,9 @@ app.post("/activities/", async (req, res) => {
 // What happens to client that submitted
 
 app.post("/survey/", (req, res) => {
-  console.log(req.body);
-
+  console.log('Received survey submission.');
   db.insert(req.body);
-
-  res.redirect("/");
-  // res.end(); // And handle page reload on client.
+  res.status(200).json({ success: true }); // And handle page reload on client.
 });
 
 // b. Store the data in the lightweight in-memory NDDB database. 
@@ -100,18 +97,54 @@ let db = new NDDB();
 // c. Save the data to a CSV file in the data/ folder.
 // Ah, I forgot, you need to create the data/ folder.
 
-const path = require('path');
-let fileName = path.resolve('data', 'out.csv');
-db.save(fileName, { 
+// Solutions dir.
+let fileName = path.resolve('..', 'data', 'out.csv');
+// Exercises dir.
+// let fileName = path.resolve('data', 'out.csv');
+db.stream(fileName, { 
   // Specify a custom header.
   header: [ 'email', 'address' ],
-
-  // Incrementally save to the same csv file all new entries.
-  keepUpdated: true
-
 });
+db.on('insert', item => console.log(item) );
 
+// d. Validate incoming requests with the express-validator
+// package.
 
+// Ref: https://express-validator.github.io/
+
+const { check, validationResult } = require("express-validator");
+
+app.post(
+  "/survey2/",
+
+  // Custom Server-side checks on incoming parameters.
+  
+  // We add a chain of validation middlewares. They modify
+  // the req object, that will evaluated inside our usual
+  // (req, res) => { ... } function with the method validationResult().
+
+  // Check the full list of validation API here:
+  // https://github.com/validatorjs/validator.js#sanitizers
+
+  check("pwd").isLength({ min: 5, max: 10 }),
+  check("address").not().isEmpty(),
+  check("city").not().isEmpty(),
+  check("state").not().isEmpty(),
+
+  (req, res) => {
+
+    // Finds the validation errors in this request 
+    // and wraps them in an object with handy functions.
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    db.insert(req.body);
+
+    return res.status(200).json({ success: true });
+  }
+);
 
 // Get Activities Functions.
 ////////////////////////////

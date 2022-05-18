@@ -67,11 +67,11 @@
     </div>
 
         <script>
-          let btn = document.getElementById('submit');
-          let form = document.getElementsByTagName('form')[0];
+          let btn = document.querySelector('button');
+          let form = document.querySelector('form');
          
           btn.onclick = function(event) {
-
+            debugger
             let opts = {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },
@@ -86,7 +86,6 @@
                 })
             };
 
-           
             if (form.checkValidity()) {
 
                // Otherwise it gets sent via a GET request.
@@ -95,7 +94,7 @@
               // Exercise.
               // Display the results of validation in a Modal.
               ////////////////////////////////////////////////
-              fetch('http://localhost:3000/survey2/', opts)
+              fetch('http://localhost:3000/survey/', opts)
                           .then(res => res.json())
                           .then(res => {
                             let str = '';
@@ -114,6 +113,7 @@
                             }
                           })
                           .catch(res => {
+                            debugger
                             console.log('Generic error:')
                             console.log(res);
                           });
