@@ -43,7 +43,8 @@ const PORT = 3000;
 // app.use(cors());
 
 // File in directory /public/ will be cached and served.
-app.use(express.static('public'));
+const path = require('path');
+app.use(express.static(path.join(__dirname, 'public')));
 
 // POST (and PUT) requests require additional middleware to parse
 // the HTTP requests' body.
@@ -74,15 +75,10 @@ app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`));
 // getActivities() defined below. This function asynchronously returns
 // all the activities used in the Bootstrap chapter. 
 
-// Solution.
-app.get("/activities/", async (req, res) => {
-	const activities = await getActivities();
-	res.send(activities)
-});
 
-// b. Copy index.html and rename to fetch.html. Update it to to fetch
+// b. Copy index.html and name it fetch.html. Update it to to fetch
 // the activities using the REST API that you just created here.
-// Hint: use the fetch command.
+// Hint: use fetch or axios.
 
 
 // c. Express can assign route segments to variables. This is
@@ -110,13 +106,7 @@ app.get("/activities/", async (req, res) => {
 // - Copy file fetch.html and rename to fetch_one.html and fetch
 // a random activity.
 
-// Hint: generate a random integer between 0 and 11 (tot num of activities):
-// https://www.w3schools.com/JS/js_random.asp  
 
-app.get("/activities/:id", async (req, res) => {
-	const activities = await getActivities();
-	res.send(activities[req.params.id]);
-});
 
 // d. Optional. 
 // You want to protect your precious list of activities with a super secret

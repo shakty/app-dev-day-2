@@ -38,12 +38,13 @@
 // https://devcenter.heroku.com/articles/procfile
 //
 // TL;DR, a Procfile is a file named Procfile (without extentions) containing:
-// web: node 4_rest.js
+// web: node app.js
 
 // 6. Copy package.json inside the folder: it will tell Heroku which
 // dependencies to install (e.g., express).
 
-// 7. Create a public/ folder and add fetch_post.html, the css and js folders.
+// 7. Create a public/ folder and add fetch_post.html, the css and js folders, 
+// and the favicon.ico file.
 // Rename fetch_post.html to index.html.
 
 // 8. Head over to:

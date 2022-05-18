@@ -4,8 +4,8 @@
 <head>
   <title>Bootstrap Modal</title>
 
-  
-<!-- 
+
+  <!-- 
   
   You write "modal" but you read "popup". If you are tired of the old-school "alert", modals offer a much improved and customizable way to display a full-screen message box.
 
@@ -68,17 +68,20 @@
     <h1 class="display-4">Do you feel the power?</h1>
     <p class="lead">
 
-      <ul class="nav nav-pills" role="tablist">
-        <li class="nav-item" role="presentation">
-          <button type="button" id="power-yes" class="nav-link h3" role="tab" data-bs-toggle="pill" data-bs-target="#tab-yes">Yes</button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button type="button" id="power-maybe" class="nav-link h3"role="tab" data-bs-toggle="pill" data-bs-target="#tab-maybe">Maybe</button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button type="button" id="power-no" class="nav-link h3" role="tab" data-bs-toggle="pill" data-bs-target="#tab-no">No</button>
-        </li>
-      </ul>
+    <ul class="nav nav-pills" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button type="button" id="power-yes" class="nav-link h3" role="tab" data-bs-toggle="pill"
+          data-bs-target="#tab-yes">Yes</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button type="button" id="power-maybe" class="nav-link h3" role="tab" data-bs-toggle="pill"
+          data-bs-target="#tab-maybe">Maybe</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button type="button" id="power-no" class="nav-link h3" role="tab" data-bs-toggle="pill"
+          data-bs-target="#tab-no">No</button>
+      </li>
+    </ul>
 
     </p>
   </div>
@@ -188,83 +191,8 @@
   <!-- These scripts contain the functions to render the row of activities -->
   <script src="js/grid_create.js"></script>
   <script src="js/progress.js"></script>
-
-
-  <!-- Solution -->
   <script src="js/modal.js"></script>
-
-  <script>
-
-   
-    // Do something about it.
-    function doSomethingAboutIt() {
-
-      // In principle, we could add async to this callback,
-      // however, jQuery is complaining, so need to create
-      // a self-executing anonymous async function below.
-      $(".row").first().fadeOut("fast", function () {
-
-
-        $('#row-progress').fadeIn();
-
-        // Simulate receiving data and updatign progress.
-        let updates = [0, 20, 40, 60, 80, 100];
-        updates.forEach((update, idx) => {
-          setTimeout(() => updateProgress(update), idx * 1000);
-        });
-
-        // Self-executing anonymous async function.
-        (async () => {
-
-          let activities = await fetchActivities();
-
-          $('#row-progress').fadeOut("fast");
-
-          let row = createActivitiesRow(activities);
-
-          // Get the second element with class .container,
-          // and append the row with activities cards.
-          document.querySelectorAll('.container')[1].appendChild(row);
-
-          
-          // A little extra delay feels better.
-          setTimeout(() => {
-            $("#feelbetter-grid").fadeIn("slow")[0].scrollIntoView({
-              behavior: "smooth",
-              block: "end"
-            });
-
-          }, 300);
-
-
-          // Important! Add your code here.
-          // Detect that the mouse is hovering over a card's footer and 
-          // then display the modal.
-
-          // Your code here.
-
-          doSolution();
-
-        })();
-
-      });
-
-    }
-
-    // The functions below adds additional functionalities to the modal popup, 
-    // but are outside of the exercise's scope.
-
-    $('#yes-do-survey').click(() => {
-      window.location.href = "8_bootstrap_forms.html";
-    });
-
-    // If the modal is hidden unbind the jQuery hover on footer.
-    $('#surveyModal').on('hidden.bs.modal', function (event) {
-      $("div.card-footer").unbind("mouseenter mouseleave");
-    });
-
-
-  </script>
+  <script src="js/logic.js"></script>
 </body>
 
 </html>
