@@ -5,6 +5,11 @@
 // Module: MongoDB.
 ///////////////////
 
+// Note for the execution. 
+// You always need the connection open also for later exercises.
+// It is perhaps convenient to comment the exercises that you have completed
+// and execute the whole file with Code Runner.
+
 
 // Exercise 3. Searching for data.
 //////////////////////////////////

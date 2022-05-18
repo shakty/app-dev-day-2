@@ -20,12 +20,15 @@
 // - The first time the file is loaded, the connection is established.
 // - From that point on, the same connection object is shared.
 
+// No exercises here, but we will use this file to load the database connection
+// in Express.
+
 
 const { MongoClient } = require("mongodb");
 
-const uri = "mongodb+srv://root:XXX@yourproject.8yx5m.mongodb.net/?retryWrites=true&w=majority";
+const uri = "mongodb+srv://root:testtest@nodegame.8yx5m.mongodb.net/?retryWrites=true&w=majority";
 
-const client = new MongoClient(connectionString, {
+const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -39,15 +42,15 @@ const connectToServer = cb => {
       console.log(err);
       if (cb) cb(err, null);
     }
-    dbConnection = client.db("appdev").collection("activities");
+    dbConnection = client.db("appdev");
     if (cb) cb(null, dbConnection);
   });
 }
 
-const getDb = cb => {
+const db = cb => {
   if (dbConnection) return dbConnection;
   connectToServer(cb);
 };
 
-module.exports = { connectToServer, getDb };
+module.exports = { connectToServer, db };
 
