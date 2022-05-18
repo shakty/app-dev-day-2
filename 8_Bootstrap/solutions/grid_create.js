@@ -3,7 +3,7 @@
 let activities = [
     {
         title: 'Adopt A Pet Dog.',
-        description: 'Don\'t wait, the bet pets go early.',
+        description: 'Don\'t wait, the best pets go early.',
         link: 'https://www.petfinder.com/pet-adoption/dog-adoption/'
     },
     {
