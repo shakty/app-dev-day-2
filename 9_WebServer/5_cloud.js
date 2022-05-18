@@ -43,8 +43,8 @@
 // 6. Copy package.json inside the folder: it will tell Heroku which
 // dependencies to install (e.g., express).
 
-// 7. Create a public/ folder and add fetch_post.html, the css and js folders, 
-// and the favicon.ico file.
+// 7. Create a public/ folder and add fetch_post.html, 8_bootstrap_forms.html,
+// the css and js folders, and the favicon.ico file.
 // Rename fetch_post.html to index.html.
 
 // 8. Head over to:

@@ -5,34 +5,13 @@
 // Module: Web Server.
 //////////////////////
 
-// Exercise 5: REST.
-////////////////////
+// Exercise 6: Forms.
+/////////////////////
 
-// REST (Representational Transfer State) is a widely used pattern
-// to create API which is implemented by Express.
-
-// It contains four methods to do CRUD operations: 
-
-// - POST:     Create a new resource, 
-// - GET:      Read an existing resource,
-// - PUT:      Update an existing resource,
-// - DELETE:   Delete an exiting resource.
-
-// More details here: 
-// https://restfulapi.net/
-// https://www.edureka.co/blog/what-is-rest-api/
-
-// In practice this semantic representation is seldom implemented in full,
-// and only GET and POST requests are used. 
-
-// The main difference between GET and POST is that POST submits additional
-// information as a payload to body of the HTTP request, while GET as a query
-// string. For this, POST is preferred when larger pieces of information are 
-// transferred or when dealing with sensitive data. 
-
-// More details here:
-// https://www.w3schools.com/tags/ref_httpmethods.asp
-// https://www.guru99.com/difference-get-post-http.html
+// Here we learn a little bit more about forms, automatic POST
+// requests by the browser vs custom fetch requests, how to use
+// express-validator to validate incoming remote requests,
+// and saving the incoming data to a CSV file.
 
 const express = require('express');
 const app = express();
@@ -94,8 +73,8 @@ app.post("/activities/", async (req, res) => {
 });
 
 
-// Exercise 6: Forms.
-/////////////////////
+// Exercise.
+////////////
 
 // a. Modify public/8_bootstrap_forms.html to send data to the route
 // "/survey". Ah, I forgot: create that route.
