@@ -23,7 +23,8 @@ const PORT = 3000;
 // app.use(cors());
 
 // File in directory /public/ will be cached and served.
-app.use(express.static("public"));
+const path = require('path');
+app.use(express.static(path.join(__dirname, 'public')));
 
 // POST (and PUT) requests require additional middleware to parse
 // the HTTP requests' body.
