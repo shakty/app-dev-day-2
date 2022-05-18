@@ -91,7 +91,6 @@ app.post("/activities/", async (req, res) => {
 // Ref: https://github.com/nodeGame/NDDB
 
 const NDDB = require("NDDB");
-const path = require("path");
 
 let db = new NDDB();
 let fileName = path.resolve("data", "out.csv");
