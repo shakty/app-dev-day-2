@@ -115,7 +115,7 @@ app.use("/survey3/", (req, res, next) => {
 
   let ip = req.socket.remoteAddress;
 
-  // console.log(ip);
+  console.log('IP:', ip);
 
   if (whitelistIP.indexOf(ip) !== -1) next();
   else res.status(400).json({ errors: [ { msg: `IP ${ip} not whitelisted` } ] });
@@ -191,7 +191,13 @@ httpsServer.listen(3000, () => {
 
 const NDDB = require("NDDB");
 let db = new NDDB();
-let fileName = path.resolve("data", "out.csv");
+let fileName = path.resolve('data', 'out.csv');
+db.stream(fileName, { 
+  // Specify a custom header.
+  header: [ 'email', 'address' ],
+});
+db.on('insert', item => console.log(item) );
+
 const { check, validationResult } = require("express-validator");
 
 
@@ -278,25 +284,6 @@ app.post(
     return res.status(200).json({ success: true });
   }
 );
-
-// Store an item in in-memory database and save it to CSV.
-//////////////////////////////////////////////////////////
-
-function storeAndSave(item) {
-  // console.log(item);
-
-  db.insert(item);
-
-  // Will always append to an existing file.
-  db.save(fileName, {
-
-    // Specify a custom header.
-    header: ["email", "address"],
-
-    // Saves only updates from previous save command.
-    updatesOnly: true,
-  });
-}
 
 
 // Activities routes.
