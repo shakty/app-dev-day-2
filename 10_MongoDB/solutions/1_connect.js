@@ -12,7 +12,7 @@
 // free, open source, can be installed locally or used on in the cloud. Ah, 
 // it also has got a great documentation and a large community.
 
-// Here is a tutorial article describing what MongoDB is:
+// To know more about what MongoDB is and how to get started:
 // https://www.educba.com/mongodb-open-source/
 // https://www.mongodb.com/languages/mongodb-with-nodejs
 
@@ -58,9 +58,6 @@ const uri = require('./private/atlas.js');
 //   from a conf file and then store them securely offline after your app
 //   has started.
 
-// Here is how you should store secret files:
-// https://blog.gitguardian.com/secrets-api-management/
-
 
 // Exercise 2. Connect!
 ///////////////////////
@@ -69,24 +66,24 @@ const uri = require('./private/atlas.js');
 
 // https://www.mongodb.com/docs/drivers/node/current/
 
-const client = new MongoClient(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+// const client = new MongoClient(uri, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true
+// });
 
-console.log('Connecting to MongoDB...');
+// console.log('Connecting to MongoDB...');
 
-client.connect(err => {
-  if (err) {
-    console.log(err);
-    return;
-  }
-  console.log('Connected!');
+// client.connect(err => {
+//   if (err) {
+//     console.log(err);
+//     return;
+//   }
+//   console.log('Connected!');
 
-  // Let's also close the connection.
-  client.close();
+//   // Let's also close the connection.
+//   client.close();
 
-});
+// });
 
 
 // Checkpoint: Does it work? By default, you need to authorize each IP address
@@ -98,3 +95,18 @@ client.connect(err => {
 
 // Too easy? Getting bored? Try to connect with the async/await pattern,
 // instead of using the callback.
+
+
+async function run() {
+  try {
+    await client.connect();
+    console.log('Connected!')
+  } 
+  finally {
+    // Ensures that the client will close when you finish/error.
+    await client.close();
+  }
+}
+
+console.log('Connecting to MongoDB...');
+run().catch(console.log);

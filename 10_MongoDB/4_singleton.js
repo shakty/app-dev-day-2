@@ -12,7 +12,7 @@
 // https://refactoring.guru/design-patterns/singleton
 
 // This patterns implements a use case in which your application to need
-// to share access to one resource  (e.g., a database) across different files.
+// to share access to one resource (e.g., a database) across different files.
 
 // The basic idea behind a singleton is very easy:
 
@@ -26,7 +26,9 @@
 
 const { MongoClient } = require("mongodb");
 
-const uri = "mongodb+srv://root:testtest@nodegame.8yx5m.mongodb.net/?retryWrites=true&w=majority";
+// Read uri from external file. File is added to .gitignore so that it 
+// is not added to git index and accidentally shared.
+const uri = require('./private/atlas.js');
 
 const client = new MongoClient(uri, {
   useNewUrlParser: true,

@@ -14,7 +14,9 @@
 
 const { MongoClient } = require('mongodb');
 
-const uri = "mongodb+srv://root:XXX@yourproject.8yx5m.mongodb.net/?retryWrites=true&w=majority";
+// Read uri from external file. File is added to .gitignore so that it 
+// is not added to git index and accidentally shared.
+const uri = require('./private/atlas.js');
 
 
 const client = new MongoClient(uri, {
