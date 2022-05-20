@@ -79,16 +79,20 @@ let msgs = [
   'OK, let me repeat.'
 ];
 
-
 if ('Notification' in window) {
   let btn = document.getElementById('notification');
   btn.addEventListener('click', showNotification);
+  // Make button visible.
+  btn.style.display = '';
 }
 
 let counter = 0;
 function showNotification() {
   Notification.requestPermission(function (result) {
     if (result === 'granted') {
+      // We are doing within a service worker, but that is not
+      // mandatory for this example. Service workers are more useful
+      // when we want to display push notifications from a remote server. 
       navigator.serviceWorker.ready.then(function (registration) {
         let idx = counter++ % msgs.length;
         let body = msgs[idx];
