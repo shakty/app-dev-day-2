@@ -69,7 +69,10 @@ client.connect(async (err) => {
   // can use the $where clause.
   
   // let cursor = await db.find({
-  //   $where: 'this.description.length > 20'
+  //   // $where: 'this.description.length > 20'
+  //   // $where: function() {
+  //   //   return this.description.length > 20;
+  //   // }
   // });
 
   // await cursor.forEach(doc => console.log(doc));  
@@ -91,7 +94,7 @@ client.connect(async (err) => {
   // Hint: delete and deleteOne
 
   // Query for a movie that has title "Annie Hall"
-  const query = { title: "Adopt A Pet Dog." };
+  const query = { title: "Host A Dinner Party With Friends." };
   const result = await db.deleteOne(query);
   
   if (result.deletedCount === 1) {

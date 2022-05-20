@@ -26,7 +26,7 @@ const client = new MongoClient(uri, {
 
 console.log('Connecting to MongoDB...');
 
-client.connect(err => {
+client.connect(async (err) =>  {
   if (err) {
     console.log(err);
     return;
@@ -126,7 +126,7 @@ client.connect(err => {
   // Hint: https://www.mongodb.com/docs/manual/reference/method/db.collection.insertMany/
   
   // Your code here!
-  // db.insertMany(activities);
+  // await db.insertMany(activities);
 
   // Check if the database was updated in the Atlas cloud.
 
@@ -136,7 +136,7 @@ client.connect(err => {
 
 
   // Your code here!
-  // db.insertOne({
+  // await db.insertOne({
   //   title: "Learning JS",
   //   description: "It can change your life",
   //   link: "https://javascript.info"
