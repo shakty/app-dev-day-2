@@ -24,55 +24,6 @@ const NOT_EMPTY_VALIDATE = text => text.trim() !== "";
 // Regex for US ZIP code format.
 const ZIP_VALIDATE = text => /^\d{5}(-\d{4})?$/.test(text);
 
-// Error Feedbacks.
-///////////////////
-
-const errMsgs = {
-    
-    abc: 'Cannot contain numbers',
-
-    email: 'Email not valid',
-
-    pwd: 'Must be at least 8 chars and contain a number or a special char',
-
-    noEmpty: 'Cannot be empty',
-
-    zip: 'Zip-code not valid'
-};
-
-
-function addFeedbackToInput(form) {
-    let div = document.createElement('div');
-    // It will be displayed only
-    // if is-invalid class is also there.
-    div.className = 'invalid-feedback';
-    div.innerHTML = getErrMsg(form);
-    form.parentElement.appendChild(div);
-}
-
-function getErrMsg(form) {
-    let id = form.id;
-    let err;
-
-    if (id === "first" || id === "last" || id === "city") {
-        err = errMsgs.abc;
-    }
-    if (id === "email") {
-        err = errMsgs.email;
-    }
-    else if (id === "pwd") {
-        err = errMsgs.pwd;
-    }
-    else if (id === "address") {
-        err = errMsgs.noEmpty;
-    }
-    else if (id === "zip") {
-        err = errMsgs.zip;
-    }
-
-    return err;
-}
-
 
 // Functions for validation of forms.
 /////////////////////////////////////
@@ -131,8 +82,9 @@ function addValidation(form) {
        form.classList.remove('is-invalid');
    });
 
+   // Uncomment for Exercise 2!
    // Add feedback when validation fails.
-   addFeedbackToInput(form);
+   // addFeedbackToInput(form);
 }
 
 
@@ -164,10 +116,7 @@ function addValidation(form) {
                 let valid = validateAndSetClass(form);
                 // If one form is not valid, stops submission, but
                 // keep validating remaining forms.
-                if (!valid) {
-                    submit = false;
-                    console.log(form.id, form.value);
-                }
+                if (!valid) submit = false;
             }
             
             // Store information.
@@ -176,12 +125,12 @@ function addValidation(form) {
         });
 
         if (submit) {
-            submitData(data);
+            console.log('Submitting data...');
+            console.log(data);
         }
         else {
             console.log('Data is invalid...');
         }
-        console.log(data);
     });
 
 })()
