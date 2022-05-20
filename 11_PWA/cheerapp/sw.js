@@ -91,10 +91,11 @@ function precacheAssets(event) {
         // you should not do it. How do you know it's the same as last time?
         // You might still cache it under a different name and load the old
         // one if network is not available. Still it might be confusing for 
-        // the user.
+        // the user. Using IndexedDB API is actually more appropriate to store
+        // JSON content, because it gives more flexibility (not covered here).
         cache.add('https://limitless-castle-38236.herokuapp.com/activities/');
 
-      });
+      })
   );
 }
 
