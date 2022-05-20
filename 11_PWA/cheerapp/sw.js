@@ -95,7 +95,7 @@ function precacheAssets(event) {
         // JSON content, because it gives more flexibility (not covered here).
         cache.add('https://limitless-castle-38236.herokuapp.com/activities/');
 
-      });
+      })
   );
 }
 
